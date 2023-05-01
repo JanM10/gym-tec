@@ -6,6 +6,7 @@ import { Register } from "./pages/Register";
 import { Sucursales } from "./pages/Sucursales";
 import { Modal } from "./components/Modal";
 import SucursalesAPI from "./pages/SucursalesAPI";
+import GestionProductos from "./pages/GestionProductos";
 
 
 function App() {
@@ -33,14 +34,14 @@ function App() {
         </Routes>
       </Router>
 
-
+<SucursalesAPI />
       
   */
 
 
   return (
     <>
-      <SucursalesAPI />
+      <GestionProductos />
     </>
   );
 }
