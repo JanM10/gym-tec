@@ -37,7 +37,7 @@ const SearchComponent = () => {
     showData()
   }, [])
   
-  //renderizamos la vista
+  //renderizamos la vista..
   return (
     <div>
         <input value={search} onChange={searcher} type="text" placeholder='Search' className='form-control'/>
