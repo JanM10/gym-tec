@@ -7,6 +7,7 @@ import { Sucursales } from "./pages/Sucursales";
 import { Modal } from "./components/Modal";
 import SucursalesAPI from "./pages/SucursalesAPI";
 import GestionProductos from "./pages/GestionProductos";
+import SearchComponent from "./pages/SearchComponent";
 
 
 
@@ -34,9 +35,11 @@ function App() {
 
 
   return (
-    <>
-      <SucursalesAPI />
-    </>
+    
+    <div className="container-fluid">
+    <h2 className='text-center'>React Search</h2>
+     <SearchComponent />     
+   </div>
   );
 }
 
