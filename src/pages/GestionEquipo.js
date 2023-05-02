@@ -1,5 +1,6 @@
 import React from "react";
 import MaterialTable from 'material-table';
+import DataTable from "react-data-table-component";
 
 const GestionProductos=() =>{
 
@@ -15,7 +16,8 @@ type:'numeric'
 },{
     title:'Descripción',
     field:'Descripción'
-}
+
+  },
 
 ];
 
@@ -36,22 +38,20 @@ return (
         columns={columnas}
         data={data}
         title="Equipo Disponible"
-        actions=([
+        actions={[
 
 
-            {
-                icon:'editar',
-                tooltip: 'editar Equipo',
-                onclick: (event, rowData)=>alert('has presionado editar equipo:'+rowData.equipo)
+          {
+              icon:'editar',
+              tooltip: 'editar Equipo',
+              onclick: (event, rowData)=>alert('has presionado editar equipo:'+rowData.equipo)
 
-            }, {
-                icon:'eliminar',
-                tooltip: 'eliminar equipo',
-                onclick: (event, rowData)=>window.confirm('Estas seguro de querer eliminar este equipo:'+rowData.equipo)
+          }, {
+              icon:'eliminar',
+              tooltip: 'eliminar equipo',
+              onclick: (event, rowData)=>window.confirm('Estas seguro de querer eliminar este equipo:'+rowData.equipo)
 
-            }
-        ])
-
+          } ]}
               
         />
     </div>
