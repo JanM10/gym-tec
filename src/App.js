@@ -11,6 +11,8 @@ import SearchComponent from "./pages/SearchComponent";
 import GestionEquipo from "./pages/GestionEquipo";
 
 
+
+
 function App() {
 
   const [currentForm, setCurrentForm] = useState('login');
@@ -20,14 +22,6 @@ function App() {
   }
 
   /*
-  <div>
-      {
-        currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
-      }
-    </div>
-
-    <Tabla />
-
 <Router>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -36,7 +30,7 @@ function App() {
         </Routes>
       </Router>
 
-<SucursalesAPI />
+
       
   */
 
