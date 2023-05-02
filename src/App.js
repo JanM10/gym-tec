@@ -9,6 +9,8 @@ import SucursalesAPI from "./pages/SucursalesAPI";
 import GestionProductos from "./pages/GestionProductos";
 
 
+
+
 function App() {
 
   const [currentForm, setCurrentForm] = useState('login');
@@ -18,14 +20,6 @@ function App() {
   }
 
   /*
-  <div>
-      {
-        currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
-      }
-    </div>
-
-    <Tabla />
-
 <Router>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -34,14 +28,14 @@ function App() {
         </Routes>
       </Router>
 
-<SucursalesAPI />
+
       
   */
 
 
   return (
     <>
-      <GestionProductos />
+      <SucursalesAPI />
     </>
   );
 }
