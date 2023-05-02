@@ -8,6 +8,7 @@ import { Modal } from "./components/Modal";
 import SucursalesAPI from "./pages/SucursalesAPI";
 import GestionProductos from "./pages/GestionProductos";
 import SearchComponent from "./pages/SearchComponent";
+import GestionEquipo from "./pages/GestionEquipo";
 
 
 function App() {
@@ -44,7 +45,7 @@ function App() {
     
     <div className="container-fluid">
     <h2 className='text-center'>React Search</h2>
-     <SearchComponent />     
+     <GestionEquipo />     
    </div>
   );
 }
