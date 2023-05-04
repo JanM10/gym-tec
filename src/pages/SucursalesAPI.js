@@ -10,6 +10,8 @@ import axios from "axios";
 import '../styles/Modal.css';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ModalPrueba from "../components/ModalPrueba";
+import "../styles/Sucursales.css";
 
 const SucursalesAPI = () => {
 
@@ -41,7 +43,6 @@ const SucursalesAPI = () => {
     const [editHorario_atencion, setEditHorario_atencion] = useState('') //no esta
     const [editEmpleado_admin, setEditEmpleado_admin] = useState('') //no esta
     const [editCapacidad_maxima, setEditCapacidad_maxima] = useState('')
-
     const [editTelefono1, setEditTelefono1] = useState('')
     const [editTelefono2, setEditTelefono2] = useState('')
     const [editEstado_tienda, setEditEstado_tienda] = useState('')
@@ -201,7 +202,7 @@ const SucursalesAPI = () => {
     const handleUpdate = () => {
         const url = `http://localhost:49146/api/sucursal/${editId}`;
         const datos = {
-            "id" :editId,
+            "id": editId,
             "nombre": editNombre_sucursal,
             "fecha_apertura": editFecha_apertura,
             "capacidad": editCapacidad_maxima,
@@ -226,7 +227,7 @@ const SucursalesAPI = () => {
     const [modalOpen, setModalOpen] = useState(false);
 
     return (
-        <Fragment>
+        <Fragment >
             <ToastContainer />
             <Container>
                 <Row>
@@ -302,67 +303,71 @@ const SucursalesAPI = () => {
                 </Row>
             </Container>
 
+            <div className="general">
+                <Table striped bordered hover className="tabla">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre Sucursal</th>
+                            <th>Provincia</th>
+                            <th>Canton</th>
+                            <th>Distrito</th>
+                            <th>Fecha de apertura</th>
+                            <th>Horario Atencion</th>
+                            <th>Administrador </th>
+                            <th>Capacidad</th>
+                            <th>Telefono1</th>
+                            <th>Telefono2</th>
+                            <th>ETienda</th>
+                            <th>ESpa</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            data && data.length > 0 ? data.map((item, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td>{item.id}</td>
+                                        <td>{item.nombre}</td>
+                                        <td>{item.provincia}</td>
+                                        <td>{item.canton}</td>
+                                        <td>{item.distrito}</td>
+                                        <td>{item.fecha_apertura}</td>
+                                        <td>{item.horario_atencion}</td> {/* No esta */}
+                                        <td>{item.empleado_admin}</td> {/* No esta */}
+                                        <td>{item.capacidad}</td>
+                                        <td>{item.telefono1}</td> {/* No esta */}
+                                        <td>{item.telefono2}</td> {/* No esta */}
+                                        <td>{item.estado_tienda}</td>
+                                        <td>{item.estado_spa}</td>
+                                        <td colSpan={2}>
+                                            <button
+                                                className="btn btn-primary"
+                                                onClick={() => handleEdit(item.id)}
+                                            >Editar</button> &nbsp;
+                                            <button
+                                                className="btn btn-danger"
+                                                onClick={() => handleDelete(item.id)}
+                                            >Eliminar</button>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                                :
+                                'Loading...'
+                        }
+                    </tbody>
+                </Table>
 
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nombre Sucursal</th>
-                        <th>Provincia</th>
-                        <th>Canton</th>
-                        <th>Distrito</th>
-                        <th>Fecha de apertura</th>
-                        <th>Horario Atencion</th>
-                        <th>Administrador </th>
-                        <th>Capacidad</th>
-                        <th>Telefono1</th>
-                        <th>Telefono2</th>
-                        <th>ETienda</th>
-                        <th>ESpa</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        data && data.length > 0 ? data.map((item, index) => {
-                            return (
-                                <tr key={index}>
-                                    <td>{item.id}</td>
-                                    <td>{item.nombre}</td>
-                                    <td>{item.provincia}</td>
-                                    <td>{item.canton}</td>
-                                    <td>{item.distrito}</td>
-                                    <td>{item.fecha_apertura}</td>
-                                    <td>{item.horario_atencion}</td> {/* No esta */}
-                                    <td>{item.empleado_admin}</td> {/* No esta */}
-                                    <td>{item.capacidad}</td>
-                                    <td>{item.telefono1}</td> {/* No esta */}
-                                    <td>{item.telefono2}</td> {/* No esta */}
-                                    <td>{item.estado_tienda}</td>
-                                    <td>{item.estado_spa}</td>
-                                    <td colSpan={2}>
-                                        <button
-                                            className="btn btn-primary"
-                                            onClick={() => handleEdit(item.id)}
-                                        >Editar</button> &nbsp;
-                                        <button
-                                            className="btn btn-danger"
-                                            onClick={() => handleDelete(item.id)}
-                                        >Eliminar</button>
-                                    </td>
-                                </tr>
-                            )
-                        })
-                            :
-                            'Loading...'
-                    }
-                </tbody>
-            </Table>
-
-            <button onClick={handleShow} className='button-27'>Agregar un registro</button>
+                <button onClick={handleShow} className='button-27'>Agregar un registro</button>
+            </div>
 
 
-            <Modal show={show} onHide={handleClose}>
+            
+
+
+            {/*<Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Editar Sucursales</Modal.Title>
                 </Modal.Header>
@@ -469,7 +474,9 @@ const SucursalesAPI = () => {
                         Save Changes
                     </Button>
                 </Modal.Footer>
-            </Modal>
+                </Modal> */}
+
+            <ModalPrueba />
 
         </Fragment>
     )
