@@ -12,6 +12,7 @@ import SearchComponent from "./pages/SearchComponent";
 import ModalPrueba from "./components/ModalPrueba";
 import GestionPuestos from "./pages/GestionPuestos";
 import NavbarPrueba from "./components/NavbarPrueba";
+import GestionServicios from "./pages/GestionServicios";
 
 function App() {
 
@@ -22,19 +23,12 @@ function App() {
   }
 
   /*
-  <div>
-      {
-        currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
-      }
-    </div>
-
-    <Tabla />
 
 <Router>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/Register" element={<Register />} />
-          <Route path="/Sucursales" element={<Sucursales />} />
+          <Route path="/Puestos" element={<GestionPuestos />} />
         </Routes>
       </Router>
 
@@ -45,19 +39,19 @@ function App() {
 
       <NavbarPrueba />
       <GestionPuestos />
+      
   */
 
 
   return (
     <>
-    <Router>
+      <Router>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Puestos" element={<GestionPuestos />} />
         </Routes>
       </Router>
-      
     </>
   );
 }
