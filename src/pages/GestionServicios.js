@@ -9,11 +9,15 @@ const GestionServicios = () => {
     const [showModal, setShowModal] = useState(false);
 
     const agregarServicio = () => {
+        if (!titulo || !descripcion) {
+          alert('Debes completar todos los campos');
+          return;
+        }
         const nuevoServicio = { id: servicios.length + 1, titulo, descripcion };
         setServicios([...servicios, nuevoServicio]);
         setTitulo('');
         setDescripcion('');
-    }
+      };
 
     const eliminarServicio = (id) => {
         const serviciosActualizados = servicios.filter(servicio => servicio.id !== id);
@@ -21,18 +25,22 @@ const GestionServicios = () => {
     }
 
     const editarServicio = () => {
+        if (!titulo || !descripcion) {
+          alert('Debes completar todos los campos');
+          return;
+        }
         const serviciosActualizados = servicios.map(servicio => {
-            if (servicio.id === servicioId) {
-                return { ...servicio, titulo, descripcion };
-            }
-            return servicio;
+          if (servicio.id === servicioId) {
+            return { ...servicio, titulo, descripcion };
+          }
+          return servicio;
         });
         setServicios(serviciosActualizados);
         setTitulo('');
         setDescripcion('');
         setServicioId(null);
         setShowModal(false);
-    }
+      };
 
     const handleEditar = (id) => {
         const servicioEncontrado = servicios.find(servicio => servicio.id === id);
@@ -136,6 +144,4 @@ const GestionServicios = () => {
         </div>
     );
 }
-
 export default GestionServicios;
-
