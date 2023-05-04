@@ -1,6 +1,6 @@
 import { Button, Table } from "react-bootstrap";
 
-const TablaPuestos = ({ data, setEditar, mostrarModal, setMostrarModal }) => {
+const TablaPuestos = ({ data, setEditar, mostrarModal, setMostrarModal, eliminarPuesto }) => {
 
     const enviarDatos = (puesto) => {
         setEditar(puesto)
@@ -13,6 +13,7 @@ const TablaPuestos = ({ data, setEditar, mostrarModal, setMostrarModal }) => {
                 <tr>
                     <th>Id</th>
                     <th>Descripción</th>
+                    <th>Acciones</th>
                     {/* <th>Puestos</th> */}
                 </tr>
             </thead>
@@ -35,7 +36,11 @@ const TablaPuestos = ({ data, setEditar, mostrarModal, setMostrarModal }) => {
                                        className="me-2"
                                        onClick={() => enviarDatos(item)}
                                        >Editar</Button>
-                                    <Button variant="danger" size="sm">Eliminar</Button>
+                                    <Button
+                                     variant="danger"
+                                      size="sm"
+                                      onClick={() => eliminarPuesto(item.id)}
+                                      >Eliminar</Button>
                                 </td>
                             </tr>
                         ))

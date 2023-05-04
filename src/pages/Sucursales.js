@@ -1,6 +1,5 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { useTable, useGlobalFilter, usePagination, useSortBy, } from "react-table";
-import MOCK_DATA from "../components/MOCK_DATA.json";
 import { Columnas } from "../components/Columnas";
 import { GlobalFilter } from '../components/GlobalFilter';
 import { Navbar } from "../components/Navbar";
@@ -56,7 +55,7 @@ export const Sucursales = () => {
 
     /* Componentes para cargar la informacion que se muestra en las tablas */
     const columnas = useMemo(() => Columnas, []);
-    const data = useMemo(() => MOCK_DATA, []);
+    const data = '';
 
     /* Funciones que brinda reac-table para facilitar codigo de las tablas */
     const {

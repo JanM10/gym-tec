@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Form, FormGroup, Modal, ModalBody, ModalHeader, ModalFooter, Button } from "react-bootstrap";
 
+// Estado inicial de la informacion 
 const modeloPuesto = {
     id: 0,
     descripcion: "",
@@ -10,6 +11,7 @@ const ModalPuestos = ({ mostrarModal, setMostrarModal, guardarPuesto, editar, se
 
     const [puesto, setPuesto] = useState(modeloPuesto);
 
+    // Toda la informacion de los inputs se actualiza en la costante del estado inicial
     const actualizarDato = (e) => {
         console.log(e.target.name + " : " + e.target.value)
         setPuesto(
@@ -20,6 +22,7 @@ const ModalPuestos = ({ mostrarModal, setMostrarModal, guardarPuesto, editar, se
         )
     }
 
+    // Se guarda los datos de los inputs y se envia para hacer el POST o PUT
     const enviarDatos = () => {
         if (puesto.id == 0) {
             guardarPuesto(puesto)
@@ -38,6 +41,7 @@ const ModalPuestos = ({ mostrarModal, setMostrarModal, guardarPuesto, editar, se
         }
     }, [editar])
 
+    // Se cierra el modal
     const cerrarModal = () => {
         setMostrarModal(!mostrarModal)
         setEditar(null)

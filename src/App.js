@@ -8,10 +8,10 @@ import { Modal } from "./components/Modal";
 import SucursalesAPI from "./pages/SucursalesAPI";
 import GestionProductos from "./pages/GestionProductos";
 import SearchComponent from "./pages/SearchComponent";
-import GestionEquipo from "./pages/GestionEquipo";
 
 import ModalPrueba from "./components/ModalPrueba";
 import GestionPuestos from "./pages/GestionPuestos";
+import NavbarPrueba from "./components/NavbarPrueba";
 
 function App() {
 
@@ -38,17 +38,27 @@ function App() {
         </Routes>
       </Router>
 
+      <div className="container-fluid">
+    <h2 className='text-center'>React Search</h2>
+     <SearchComponent />     
+   </div>
 
-      
+      <NavbarPrueba />
+      <GestionPuestos />
   */
 
 
   return (
-    
-    <div className="container-fluid">
-    <h2 className='text-center'>React Search</h2>
-     <SearchComponent />     
-   </div>
+    <>
+    <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="/Puestos" element={<GestionPuestos />} />
+        </Routes>
+      </Router>
+      
+    </>
   );
 }
 

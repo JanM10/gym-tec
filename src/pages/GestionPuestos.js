@@ -5,6 +5,7 @@ import TablaPuestos from "../components/GPuestos/TablaPuestos";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ModalPuestos from "../components/GPuestos/ModalPuestos";
+import NavbarPrueba from "../components/NavbarPrueba";
 
 const GestionPuestos = () => {
 
@@ -12,7 +13,7 @@ const GestionPuestos = () => {
     const [mostrarModal, setMostrarModal] = useState(false);
     const [editar, setEditar] = useState(null);
 
-
+    //Metodo GET
     const mostrarPuestos = async () => {
 
         const response = await fetch("http://localhost:49146/api/puesto") //Aqui va el URL del api
@@ -29,6 +30,7 @@ const GestionPuestos = () => {
         mostrarPuestos()
     }, [])
 
+    //Metodo POST
     const guardarPuesto = async (puesto) => {
 
         const response = await fetch("http://localhost:49146/api/puesto", {
@@ -45,6 +47,7 @@ const GestionPuestos = () => {
         }
     }
 
+    //Metodo PUT
     const editarPuesto = async (puesto) => {
 
         const response = await fetch("http://localhost:49146/api/puesto", {
@@ -61,39 +64,61 @@ const GestionPuestos = () => {
         }
     }
 
+    //Metodo DELETE
+    const eliminarPuesto = async (id) => {
+
+        var respuesta = window.confirm("Esta seguro que quiere eliminar el dato?")
+
+        if (!respuesta) {
+            return;
+        }
+
+        const response = await fetch("http://localhost:49146/api/puesto/" + id, {
+            method: 'DELETE',
+        })
+
+        if (response.ok) {
+            mostrarPuestos();
+        }
+    }
+
 
     return (
-        <Container>
-            <Row className="mt-5">
-                <Col sm="12">
-                    <Card>
-                        <Card.Header>
-                            <h5>Gestión de Puestos</h5>
-                        </Card.Header>
-                        <Card.Body>
-                            <Button size="sm" variant="primary"
-                                onClick={() => setMostrarModal(!mostrarModal)}>Agregar puesto</Button>
-                            <hr />
-                            <TablaPuestos
-                             data={puestos}
-                             setEditar={setEditar}
-                             mostrarModal={mostrarModal}
-                             setMostrarModal={setMostrarModal}
-                             />
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
+        <>
+            <NavbarPrueba />
+            <Container>
+                <Row className="mt-5">
+                    <Col sm="12">
+                        <Card>
+                            <Card.Header>
+                                <h5>Gestión de Puestos</h5>
+                            </Card.Header>
+                            <Card.Body>
+                                <Button size="sm" variant="primary"
+                                    onClick={() => setMostrarModal(!mostrarModal)}>Agregar puesto</Button>
+                                <hr />
+                                <TablaPuestos
+                                    data={puestos}
+                                    setEditar={setEditar}
+                                    mostrarModal={mostrarModal}
+                                    setMostrarModal={setMostrarModal}
+                                    eliminarPuesto={eliminarPuesto}
+                                />
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
 
-            <ModalPuestos
-                mostrarModal={mostrarModal}
-                setMostrarModal={setMostrarModal}
-                guardarPuesto={guardarPuesto}
-                editar={editar}
-                setEditar={setEditar}
-                editarPuesto={editarPuesto}
-            />
-        </Container>
+                <ModalPuestos
+                    mostrarModal={mostrarModal}
+                    setMostrarModal={setMostrarModal}
+                    guardarPuesto={guardarPuesto}
+                    editar={editar}
+                    setEditar={setEditar}
+                    editarPuesto={editarPuesto}
+                />
+            </Container>
+        </>
     )
 }
 
