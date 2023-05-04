@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from "axios";
 import '../styles/Modal.css';
+import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ModalPrueba from "../components/ModalPrueba";
@@ -126,10 +127,8 @@ const SucursalesAPI = () => {
         axios.post(url, datos)
             .then((result) => {
                 dataGET();
-                clear();
-                toast.success("Registro agregado con exito");
-            }).catch((error) => {
-                toast.error(error);
+                //clear();
+                alert("Se ha agregado una sucursal");
             })
     }
 
@@ -162,47 +161,21 @@ const SucursalesAPI = () => {
         setEditId('');
     }
 
-    // Metodo EDIT
     const handleEdit = (id) => {
+        //alert(id);
         handleShow();
-        axios.get(`http://localhost:49146/api/sucursal/${id}`)
-            .then((result) => {
-                setEditNombre_sucursal(result.data.nombre_sucursal);
-                setEditFecha_apertura(result.data.fecha_apertura);
-                setEditCapacidad_maxima(result.data.capacidad_maxima);
-                setEditProvincia(result.data.provincia);
-                setEditCanton(result.data.canton);
-                setEditDistrito(result.data.distrito);
-                setEditTelefono1(result.data.telefono1);
-                setEditTelefono2(result.data.telefono2);
-                setEditId(id);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
     }
 
-    // Metodo Delete
     const handleDelete = (id) => {
         if (window.confirm("Esta seguro que quiere borrar este dato?") == true) {
-            axios.delete(`http://localhost:49146/api/sucursal/${id}`)
-                .then((result) => {
-                    if (result.status === 200) {
-                        toast.success("Registro borrado con exito");
-                        dataGET();
-                    }
-                })
-                .catch((error) => {
-                    toast.error(error);
-                })
+            alert(id);
         }
     }
 
-    //Metodo PUT
     const handleUpdate = () => {
         const url = `http://localhost:49146/api/sucursal/${editId}`;
         const datos = {
-            "id": editId,
+            "id" :editId,
             "nombre": editNombre_sucursal,
             "fecha_apertura": editFecha_apertura,
             "capacidad": editCapacidad_maxima,
@@ -213,94 +186,90 @@ const SucursalesAPI = () => {
             "estado_spa": editEstado_spa,
         }
 
-        axios.put(url, datos)
-            .then((result) => {
-                handleClose();
-                dataGET();
-                clear();
-                toast.success("Registro editado con exito");
-            }).catch((error) => {
-                toast.error(error);
-            })
     }
+
 
     const [modalOpen, setModalOpen] = useState(false);
 
+
+
     return (
-        <Fragment >
+        <Fragment>
             <ToastContainer />
             <Container>
-                <Row>
-                    <Col>
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Nombre_sucursal"
-                            name="nombre"
-                            value={nombre_sucursal}
-                            onChange={(e) => setNombre_sucursal(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Provincia"
-                            value={provincia}
-                            onChange={(e) => setProvincia(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Canton"
-                            value={canton}
-                            onChange={(e) => setCanton(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Distrito"
-                            value={distrito}
-                            onChange={(e) => setDistrito(e.target.value)}
-                        />
-                    </Col>
-                    <Col>
-                        <input
-                            type="date"
-                            className="form-control"
-                            placeholder="fecha_apertura"
-                            value={fecha_apertura}
-                            onChange={(e) => setFecha_apertura(e.target.value)}
-                        />
-                    </Col>
-                    <Col>
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Capacidad"
-                            value={capacidad_maxima}
-                            onChange={(e) => setCapacidad_maxima(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Estado Tienda"
-                            value={estado_tienda}
-                            onChange={(e) => setEstado_tienda(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Estado Spa"
-                            value={estado_spa}
-                            onChange={(e) => setEstado_spa(e.target.value)}
-                        />
-                    </Col>
-                    <Col>
-                        <button
-                            className="btn btn-primary"
-                            onClick={() => dataPOST()}
-                        >Submit</button>
-                    </Col>
-                </Row>
+                <form>
+                    <Row>
+                        <Col>
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Nombre_sucursal"
+                                name="nombre"
+                                value={nombre_sucursal}
+                                onChange={(e) => setNombre_sucursal(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Provincia"
+                                value={provincia}
+                                onChange={(e) => setProvincia(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Canton"
+                                value={canton}
+                                onChange={(e) => setCanton(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Distrito"
+                                value={distrito}
+                                onChange={(e) => setDistrito(e.target.value)}
+                            />
+                        </Col>
+                        <Col>
+                            <input
+                                type="date"
+                                className="form-control"
+                                placeholder="fecha_apertura"
+                                value={fecha_apertura}
+                                onChange={(e) => setFecha_apertura(e.target.value)}
+                            />
+                        </Col>
+                        <Col>
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Capacidad"
+                                value={capacidad_maxima}
+                                onChange={(e) => setCapacidad_maxima(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Estado Tienda"
+                                value={estado_tienda}
+                                onChange={(e) => setEstado_tienda(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Estado Spa"
+                                value={estado_spa}
+                                onChange={(e) => setEstado_spa(e.target.value)}
+                            />
+                        </Col>
+                        <Col>
+                            <button
+                                className="btn btn-primary"
+                                onClick={() => dataPOST()}
+                            >Submit</button>
+                        </Col>
+                    </Row>
+                </form>
             </Container>
 
             <div className="general">

@@ -43,7 +43,7 @@ const SearchComponent = () => {
         <input value={search} onChange={searcher} type="text" placeholder='Search' className='form-control'/>
         <table className='table table-striped table-hover mt-5 shadow-lg'>
             <thead>
-                <tr className='bg-curso text-white'>
+                <tr className='bg-curso text-black'>
                     <th>NAME</th>
                     <th>USER NAME</th>
                 </tr>

@@ -8,6 +8,8 @@ import { Modal } from "./components/Modal";
 import SucursalesAPI from "./pages/SucursalesAPI";
 import GestionProductos from "./pages/GestionProductos";
 import SearchComponent from "./pages/SearchComponent";
+import GestionEquipo from "./pages/GestionEquipo";
+
 import ModalPrueba from "./components/ModalPrueba";
 import GestionPuestos from "./pages/GestionPuestos";
 
@@ -20,6 +22,14 @@ function App() {
   }
 
   /*
+  <div>
+      {
+        currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
+      }
+    </div>
+
+    <Tabla />
+
 <Router>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -27,21 +37,18 @@ function App() {
           <Route path="/Sucursales" element={<Sucursales />} />
         </Routes>
       </Router>
-      
-      
-      <SearchComponent />
-      
-      <SucursalesAPI />
 
-      <ModalPrueba />
+
       
   */
 
 
   return (
-    <>
-      <GestionPuestos />
-    </>
+    
+    <div className="container-fluid">
+    <h2 className='text-center'>React Search</h2>
+     <SearchComponent />     
+   </div>
   );
 }
 
