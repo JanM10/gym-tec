@@ -55,8 +55,7 @@ const ModalInventario = ({ mostrarModal, setMostrarModal, guardarInventario, edi
     return (
         <Modal show={mostrarModal} >
             <ModalHeader>
-                Nuevo inventario
-                {/*{inventario.id == 0 ? "Nuevo inventario" : "Editar inventario"} */}
+                {inventario.id == 0 ? "Nuevo inventario" : "Editar inventario"} 
             </ModalHeader>
             <ModalBody>
                 <Form>
