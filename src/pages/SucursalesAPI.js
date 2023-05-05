@@ -11,7 +11,6 @@ import '../styles/Modal.css';
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ModalPrueba from "../components/ModalPrueba";
 import "../styles/Sucursales.css";
 
 const SucursalesAPI = () => {
@@ -444,8 +443,6 @@ const SucursalesAPI = () => {
                     </Button>
                 </Modal.Footer>
                 </Modal> */}
-
-            <ModalPrueba />
 
         </Fragment>
     )

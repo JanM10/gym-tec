@@ -8,11 +8,10 @@ import { Modal } from "./components/Modal";
 import SucursalesAPI from "./pages/SucursalesAPI";
 import GestionProductos from "./pages/GestionProductos";
 import SearchComponent from "./pages/SearchComponent";
-
-import ModalPrueba from "./components/ModalPrueba";
 import GestionPuestos from "./pages/GestionPuestos";
 import NavbarPrueba from "./components/NavbarPrueba";
 import GestionServicios from "./pages/GestionServicios";
+import GestionInventario from "./pages/GestionInventario";
 
 function App() {
 
@@ -38,20 +37,16 @@ function App() {
    </div>
 
       <NavbarPrueba />
-      <GestionPuestos />
       
+      <GestionServicios />
+
+      <GestionPuestos />
   */
 
 
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/Register" element={<Register />} />
-          <Route path="/Puestos" element={<GestionPuestos />} />
-        </Routes>
-      </Router>
+      <GestionInventario />
     </>
   );
 }

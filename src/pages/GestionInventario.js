@@ -1,39 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { Card, Col, Container, Row, Button } from "react-bootstrap";
-import TablaPuestos from "../components/GPuestos/TablaPuestos";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ModalPuestos from "../components/GPuestos/ModalPuestos";
 import NavbarPrueba from "../components/NavbarPrueba";
+import TablaInventario from "../components/GInventario/TablaInventario";
+import ModalInventario from "../components/GInventario/ModalInventario";
 
-const GestionPuestos = () => {
+const GestionInventario = () => {
 
-    const [puestos, setPuestos] = useState([])
+    const [inventario, setInventario] = useState([])
     const [mostrarModal, setMostrarModal] = useState(false);
     const [editar, setEditar] = useState(null);
 
     //Metodo GET
-    const mostrarPuestos = async () => {
+    const mostrarInventario = async () => {
 
-        const response = await fetch("http://localhost:49146/api/puesto") //Aqui va el URL del api
+        const response = await fetch("") //CAMBIAR LA URL
 
         if (response.ok) {
             const data = await response.json();
-            setPuestos(data)
+            setInventario(data)
         } else {
             console.log("Hubo un error")
         }
     }
 
     useEffect(() => {
-        mostrarPuestos()
+        mostrarInventario()
     }, [])
 
     //Metodo POST
-    const guardarPuesto = async (puesto) => {
+    const guardarInventario = async (puesto) => {
 
-        const response = await fetch("http://localhost:49146/api/puesto", {
+        const response = await fetch("", { //CAMBIAR LA URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -44,14 +43,14 @@ const GestionPuestos = () => {
 
         if (response.ok) {
             setMostrarModal(!mostrarModal);
-            mostrarPuestos();
+            mostrarInventario();
         }
     }
 
     //Metodo PUT
-    const editarPuesto = async (puesto) => {
+    const editarInventario = async (puesto) => {
 
-        const response = await fetch("http://localhost:49146/api/puesto", {
+        const response = await fetch("", { //CAMBIAR LA URL
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -62,12 +61,12 @@ const GestionPuestos = () => {
 
         if (response.ok) {
             setMostrarModal(!mostrarModal);
-            mostrarPuestos();
+            mostrarInventario();
         }
     }
 
     //Metodo DELETE
-    const eliminarPuesto = async (id) => {
+    const eliminarInventario = async (id) => {
 
         var respuesta = window.confirm("Esta seguro que quiere eliminar el dato?")
 
@@ -75,16 +74,15 @@ const GestionPuestos = () => {
             return;
         }
 
-        const response = await fetch("http://localhost:49146/api/puesto/" + id, {
+        const response = await fetch("" + id, { //CAMBIAR LA URL
             method: 'DELETE',
         })
         toast.success("Dato borrado con exito")
 
         if (response.ok) {
-            mostrarPuestos();
+            mostrarInventario();
         }
     }
-
 
     return (
         <>
@@ -95,35 +93,34 @@ const GestionPuestos = () => {
                     <Col sm="12">
                         <Card>
                             <Card.Header>
-                                <h5>Gestión de Puestos</h5>
+                                <h5>Gestión de inventario</h5>
                             </Card.Header>
                             <Card.Body>
                                 <Button size="sm" variant="primary"
                                     onClick={() => setMostrarModal(!mostrarModal)}>Agregar puesto</Button>
                                 <hr />
-                                <TablaPuestos
-                                    data={puestos}
+                                <TablaInventario
+                                    data={inventario}
                                     setEditar={setEditar}
                                     mostrarModal={mostrarModal}
                                     setMostrarModal={setMostrarModal}
-                                    eliminarPuesto={eliminarPuesto}
+                                    eliminarInventario={eliminarInventario}
                                 />
                             </Card.Body>
                         </Card>
                     </Col>
                 </Row>
-
-                <ModalPuestos
+                <ModalInventario
                     mostrarModal={mostrarModal}
                     setMostrarModal={setMostrarModal}
-                    guardarPuesto={guardarPuesto}
+                    guardarInventario={guardarInventario}
                     editar={editar}
                     setEditar={setEditar}
-                    editarPuesto={editarPuesto}
+                    editarInventario={editarInventario}
                 />
             </Container>
         </>
     )
 }
 
-export default GestionPuestos
+export default GestionInventario
