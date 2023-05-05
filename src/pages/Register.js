@@ -43,15 +43,7 @@ export const Register = (props) => {
             <form onSubmit={handleSubmit} className="register_cover">
                 <h1>Crear cuenta</h1>
 
-                {/* Aqui van todos los input donde el Cedula ingresa su informacion */}
-
-                <select className="form-select" name="rol" id="rol">
-                    <option disabled selected>Eliga su tipo de cuenta...</option>
-                    <option value="Instructor">Instructor</option>
-                    <option value="Dependiente">Dependiente de Tienda</option>
-                    <option value="Spa">Spa</option>
-                    <option value="Cliente">Cliente</option>
-                </select>
+                {/* Aqui van todos los input donde el Cliente ingresa su informacion */}
 
                 <label htmlFor="cedula" className="register_label">Cédula</label>
                 <input value={Cedula} onChange={(e) => setCedula(e.target.value)}

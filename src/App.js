@@ -8,8 +8,10 @@ import { Modal } from "./components/Modal";
 import SucursalesAPI from "./pages/SucursalesAPI";
 import GestionProductos from "./pages/GestionProductos";
 import SearchComponent from "./pages/SearchComponent";
-import GestionEquipo from "./pages/GestionEquipo";
-
+import GestionPuestos from "./pages/GestionPuestos";
+import NavbarPrueba from "./components/NavbarPrueba";
+import GestionServicios from "./pages/GestionServicios";
+import GestionInventario from "./pages/GestionInventario";
 
 function App() {
 
@@ -20,33 +22,32 @@ function App() {
   }
 
   /*
-  <div>
-      {
-        currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
-      }
-    </div>
-
-    <Tabla />
 
 <Router>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/Register" element={<Register />} />
-          <Route path="/Sucursales" element={<Sucursales />} />
+          <Route path="/Puestos" element={<GestionPuestos />} />
         </Routes>
       </Router>
 
-<SucursalesAPI />
+      <div className="container-fluid">
+    <h2 className='text-center'>React Search</h2>
+     <SearchComponent />     
+   </div>
+
+      <NavbarPrueba />
       
+      <GestionServicios />
+
+      <GestionPuestos />
   */
 
 
   return (
-    
-<>
-<GestionEquipo/>
-</>
-
+    <>
+      <GestionInventario />
+    </>
   );
 }
 
