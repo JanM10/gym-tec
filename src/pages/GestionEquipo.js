@@ -1,62 +1,69 @@
-import React from "react";
-import MaterialTable from 'material-table';
-import DataTable from "react-data-table-component";
+import React, { useEffect, useRef } from 'react';
+import $ from 'jquery';
+import 'datatables.net';
+import 'datatables.net/js/jquery.dataTables';
 
-const GestionProductos=() =>{
+import '../styles/GestionEqui.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-const columnas=[
-{
-title:'ID',
-field:'Id',
-type:'numeric'
-},{
+const GestionEquipo = () => {
+    const tableRef = useRef(null);
 
-    title:'Nombre',
-    field:'Nombre'
-},{
-    title:'Descripción',
-    field:'Descripción'
+    useEffect(() => {
+        $(tableRef.current).DataTable({
+            language: {
+                search: 'Buscar:',
+                previous: 'Anterior',
+                next: 'Siguiente',
+            },
+        });
+    }, []);
 
-  },
-
-];
-
-const data=[
-
-{Id:1254, Nombre:'Bicicleta',Descripción:'Cardio'},
-{Id:1264, Nombre:'Bicicleta',Descripción:'Cardio'},
-{Id:1284, Nombre:'Bicicleta',Descripción:'Cardio'},
-{Id:1294, Nombre:'Bicicleta',Descripción:'Cardio'},
-{Id:1204, Nombre:'Bicicleta',Descripción:'Cardio'},
-
-];
-
-return (
-
-    <div>
-        <MaterialTable
-        columns={columnas}
-        data={data}
-        title="Equipo Disponible"
-        actions={[
-
-
-          {
-              icon:'editar',
-              tooltip: 'editar Equipo',
-              onclick: (event, rowData)=>alert('has presionado editar equipo:'+rowData.equipo)
-
-          }, {
-              icon:'eliminar',
-              tooltip: 'eliminar equipo',
-              onclick: (event, rowData)=>window.confirm('Estas seguro de querer eliminar este equipo:'+rowData.equipo)
-
-          } ]}
-              
-        />
-    </div>
-);
-
-}
+    return (
+        <>
+            <div className="container">
+                <div className="row">
+                    <table ref={tableRef} className="display" style={{ width: '100%' }}>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>12345</td>
+                                <td>Cinta de corre</td>
+                                <td>Cinta para correr y hacer cardio</td>
+                            </tr>
+                            <tr>
+                                <td>13579</td>
+                                <td>Bicicletas estacionaria</td>
+                                <td>Bicicleta para quemar graga y hacer cardio</td>
+                            </tr>
+                            <tr>
+                                <td>97653</td>
+                                <td>Multigimnasios</td>
+                                <td>Varios ejercicios</td>
+                            </tr>
+                            <tr>
+                                <td>87304</td>
+                                <td>Remos</td>
+                                <td>Ejercicio triceps</td>
+                            </tr>
+                            <tr>
+                                <td>87492</td>
+                                <td>Pesas</td>
+                                <td>Ejercicos espalda y triceps</td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </>
+    );
+};
 
 export default GestionEquipo;
