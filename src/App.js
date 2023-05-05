@@ -43,10 +43,10 @@ function App() {
 
   return (
     
-    <div className="container-fluid">
-    <h2 className='text-center'>React Search</h2>
-     <GestionEquipo />     
-   </div>
+<>
+<GestionEquipo/>
+</>
+
   );
 }
 
