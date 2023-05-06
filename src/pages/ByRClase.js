@@ -9,9 +9,9 @@ let datosSemana1 = [
     { clase: "Boxeo", fecha: "2023-05-05" },
     { clase: "Karate", fecha: "2023-05-06" },
     { clase: "Vacío", fecha: "2023-05-07" }
-    ];
-    
-    let datosSemana2 = [
+];
+
+let datosSemana2 = [
     { clase: "Pilates", fecha: "2023-05-08" },
     { clase: "Boxeo", fecha: "2023-05-09" },
     { clase: "Boxeo", fecha: "2023-05-10" },
@@ -19,42 +19,6 @@ let datosSemana1 = [
     { clase: "Karate", fecha: "2023-05-12" },
     { clase: "Indoor Cycling", fecha: "2023-05-13" },
     { clase: "Natación", fecha: "2023-05-14" }
-    ];
-  
-
-const datosFalsos = [
-    { fecha: '2023-01-03', valor: 'Tarea 1' },
-    { fecha: '2023-01-04', valor: 'Tarea 2' },
-    { fecha: '2023-01-05', valor: 'Tarea 3' },
-    { fecha: '2023-01-06', valor: 'Tarea 4' },
-    { fecha: '2023-01-07', valor: 'Tarea 5' },
-    { fecha: '2023-01-08', valor: 'Tarea 6' },
-    { fecha: '2023-01-09', valor: 'Tarea 7' },
-    { fecha: '2023-01-10', valor: 'Tarea 8' },
-    { fecha: '2023-01-17', valor: 'Tarea 9' },
-    { fecha: '2023-01-18', valor: 'Tarea 10' },
-    { fecha: '2023-01-19', valor: 'Tarea 11' },
-    { fecha: '2023-01-20', valor: 'Tarea 12' },
-    { fecha: '2023-01-21', valor: 'Tarea 13' },
-    { fecha: '2023-01-22', valor: 'Tarea 14' },
-    { fecha: '2023-01-23', valor: 'Tarea 15' },
-    { fecha: '2023-01-24', valor: 'Tarea 16' },
-    { fecha: '2023-01-31', valor: 'Tarea 17' },
-    { fecha: '2023-02-01', valor: 'Tarea 18' },
-    { fecha: '2023-05-02', valor: 'Tarea 19' },
-    { fecha: '2023-05-03', valor: 'Tarea 20' },
-    { fecha: '2023-05-04', valor: 'Tarea 21' },
-    { fecha: '2023-05-05', valor: 'Tarea 22' },
-    { fecha: '2023-05-06', valor: 'Tarea 23' },
-    { fecha: '2023-05-07', valor: 'Tarea 24' },
-    { fecha: '2023-05-14', valor: 'Tarea 25' },
-    { fecha: '2023-05-15', valor: 'Tarea 26' },
-    { fecha: '2023-05-16', valor: 'Tarea 27' },
-    { fecha: '2023-05-17', valor: 'Tarea 28' },
-    { fecha: '2023-05-18', valor: 'Tarea 29' },
-    { fecha: '2023-05-19', valor: 'Tarea 30' },
-    { fecha: '2023-05-20', valor: 'Tarea 31' },
-    { fecha: '2023-05-21', valor: 'Tarea 32' },
 ];
 
 
@@ -69,19 +33,30 @@ const Calendario = () => {
         // Aquí debes implementar la lógica para obtener los datos desde tu tabla de SQL
         // Puedes utilizar librerías como Axios o Fetch para realizar la consulta a la base de datos
         // Una vez obtenidos los datos, debes guardarlos en el estado "datos"
-        setDatos(datosFalsos)
+        //setDatos(datosFalsos)
     };
-  
+
 
     // Función para copiar el contenido de la semana origen a la semana destino
     const copiarSemana = (semanaOrigen, semanaDestino) => {
         //console.log(semanaOrigen)
         //console.log(semanaDestino);
-        if (semanaOrigen==="semana1" && semanaDestino==="semana2"){
-            datosSemana2=datosSemana1;
-        } else if (semanaOrigen==="semana2" && semanaDestino==="semana1"){
-            datosSemana1=datosSemana2;
+        if (semanaOrigen === "semana1" && semanaDestino === "semana2") {
+            datosSemana2 = datosSemana1;
+            for (let i = 0; i < datosSemana2.length; i++) {
+                let fecha = new Date(datosSemana2[i].fecha);
+                fecha.setDate(fecha.getDate() + 7);
+                datosSemana2[i].fecha = fecha.toISOString().slice(0, 10);
+            }
+        } else if (semanaOrigen === "semana2" && semanaDestino === "semana1") {
+            datosSemana1 = datosSemana2;
+            for (let i = 0; i < datosSemana2.length; i++) {
+                let fecha = new Date(datosSemana2[i].fecha);
+                fecha.setDate(fecha.getDate() - 7);
+                datosSemana2[i].fecha = fecha.toISOString().slice(0, 10);
+            }
         }
+          
         // Aquí debes implementar la lógica para copiar los datos de la semana origen a la semana destino
         // Puedes utilizar un bucle for para recorrer los días de la semana origen y asignar sus valores a los días correspondientes de la semana destino
         // Una vez realizada la copia, debes actualizar el estado "datos" con los nuevos valores
@@ -195,7 +170,7 @@ const Calendario = () => {
                     <Button variant="secondary" onClick={() => setModalAbierto(false)}>
                         Cancelar
                     </Button>
-                    <Button variant="primary" onClick={() => copiarSemana(semanaOrigen,semanaDestino)} disabled={!semanaOrigen || !semanaDestino}>
+                    <Button variant="primary" onClick={() => copiarSemana(semanaOrigen, semanaDestino)} disabled={!semanaOrigen || !semanaDestino}>
                         Copiar
                     </Button>
                 </Modal.Footer>
