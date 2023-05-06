@@ -2,12 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
 
 let datosSemana1 = [
-    "Yoga", "Indoor Cycling", "Yoga", "Pilates", "Boxeo", "Karate", "Vacío"
-]
-
-let datosSemana2 = [
-    "Pilates", "Boxeo", "Boxeo", "Yoga", "Karate", "Indoor Cycling", "Natación"
-]
+    { clase: "Yoga", fecha: "2023-05-01" },
+    { clase: "Indoor Cycling", fecha: "2023-05-02" },
+    { clase: "Yoga", fecha: "2023-05-03" },
+    { clase: "Pilates", fecha: "2023-05-04" },
+    { clase: "Boxeo", fecha: "2023-05-05" },
+    { clase: "Karate", fecha: "2023-05-06" },
+    { clase: "Vacío", fecha: "2023-05-07" }
+    ];
+    
+    let datosSemana2 = [
+    { clase: "Pilates", fecha: "2023-05-08" },
+    { clase: "Boxeo", fecha: "2023-05-09" },
+    { clase: "Boxeo", fecha: "2023-05-10" },
+    { clase: "Yoga", fecha: "2023-05-11" },
+    { clase: "Karate", fecha: "2023-05-12" },
+    { clase: "Indoor Cycling", fecha: "2023-05-13" },
+    { clase: "Natación", fecha: "2023-05-14" }
+    ];
+  
 
 const datosFalsos = [
     { fecha: '2023-01-03', valor: 'Tarea 1' },
@@ -120,13 +133,13 @@ const Calendario = () => {
                 <tbody>
                     <tr>
                         <td>Semana 1</td>
-                        {renderCelda(datosSemana1[0])}
-                        {renderCelda(datosSemana1[1])}
-                        {renderCelda(datosSemana1[2])}
-                        {renderCelda(datosSemana1[3])}
-                        {renderCelda(datosSemana1[4])}
-                        {renderCelda(datosSemana1[5])}
-                        {renderCelda(datosSemana1[6])}
+                        {renderCelda(datosSemana1[0].clase)}
+                        {renderCelda(datosSemana1[1].clase)}
+                        {renderCelda(datosSemana1[2].clase)}
+                        {renderCelda(datosSemana1[3].clase)}
+                        {renderCelda(datosSemana1[4].clase)}
+                        {renderCelda(datosSemana1[5].clase)}
+                        {renderCelda(datosSemana1[6].clase)}
                         <td>
                             <Button variant="secondary" onClick={() => mostrarModal('semana1')}>
                                 Copiar
@@ -135,13 +148,13 @@ const Calendario = () => {
                     </tr>
                     <tr>
                         <td>Semana 2</td>
-                        {renderCelda(datosSemana2[0])}
-                        {renderCelda(datosSemana2[1])}
-                        {renderCelda(datosSemana2[2])}
-                        {renderCelda(datosSemana2[3])}
-                        {renderCelda(datosSemana2[4])}
-                        {renderCelda(datosSemana2[5])}
-                        {renderCelda(datosSemana2[6])}
+                        {renderCelda(datosSemana2[0].clase)}
+                        {renderCelda(datosSemana2[1].clase)}
+                        {renderCelda(datosSemana2[2].clase)}
+                        {renderCelda(datosSemana2[3].clase)}
+                        {renderCelda(datosSemana2[4].clase)}
+                        {renderCelda(datosSemana2[5].clase)}
+                        {renderCelda(datosSemana2[6].clase)}
                         <td>
                             <Button variant="secondary" onClick={() => mostrarModal('semana2')}>
                                 Copiar
