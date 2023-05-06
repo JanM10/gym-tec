@@ -2,21 +2,21 @@ import React, { useState, useEffect } from "react";
 import { Form, FormGroup, Modal, ModalBody, ModalHeader, ModalFooter, Button } from "react-bootstrap";
 
 // Estado inicial de la informacion 
-const modeloPuesto = {
+const modeloTSpa = {
     id: 0,
-    descripcion: "",
+    tratamiento: "",
 }
 
-const ModalPuestos = ({ mostrarModal, setMostrarModal, guardarPuesto, editar, setEditar, editarPuesto }) => {
+const ModalTSpa = ({ mostrarModal, setMostrarModal, guardarTSpa, editar, setEditar, editarTSpa }) => {
 
-    const [puesto, setPuesto] = useState(modeloPuesto);
+    const [TSpa, setTSpa] = useState(modeloTSpa);
 
     // Toda la informacion de los inputs se actualiza en la costante del estado inicial
     const actualizarDato = (e) => {
         console.log(e.target.name + " : " + e.target.value)
-        setPuesto(
+        setTSpa(
             {
-                ...puesto,
+                ...TSpa,
                 [e.target.name]: e.target.value
             }
         )
@@ -24,20 +24,20 @@ const ModalPuestos = ({ mostrarModal, setMostrarModal, guardarPuesto, editar, se
 
     // Se guarda los datos de los inputs y se envia para hacer el POST o PUT
     const enviarDatos = () => {
-        if (puesto.id == 0) {
-            guardarPuesto(puesto)
+        if (TSpa.id == 0) {
+            guardarTSpa(TSpa)
         } else {
-            editarPuesto(puesto)
+            editarTSpa(TSpa)
         }
 
-        setPuesto(modeloPuesto);
+        setTSpa(modeloTSpa);
     }
 
     useEffect(() => {
         if (editar != null) {
-            setPuesto(editar)
+            setTSpa(editar)
         } else {
-            setPuesto(modeloPuesto)
+            setTSpa(modeloTSpa)
         }
     }, [editar])
 
@@ -51,22 +51,18 @@ const ModalPuestos = ({ mostrarModal, setMostrarModal, guardarPuesto, editar, se
     return (
         <Modal show={mostrarModal} >
             <ModalHeader>
-                {puesto.id == 0 ? "Nuevo puesto" : "Editar puesto"}
+                {TSpa.id == 0 ? "Nuevo TSpa" : "Editar TSpa"} 
             </ModalHeader>
             <ModalBody>
                 <Form>
                     <FormGroup>
-                        <Form.Label>Descripcion</Form.Label>
+                        <Form.Label>Tratamiento</Form.Label>
                         <Form.Control
                             type="text"
-                            placeholder="Descripcion"
-                            name="descripcion"
-                            onChange={(e) => actualizarDato(e)} value={puesto.descripcion} />
+                            placeholder="Tratamiento"
+                            name="tratamiento"
+                            onChange={(e) => actualizarDato(e)} value={TSpa.tratamiento} />
                     </FormGroup>
-                    {/*<FormGroup>
-                    <Label>Puesto</Label>
-                    <Input />
-                </FormGroup> */}
                 </Form>
             </ModalBody>
             <ModalFooter>
@@ -77,4 +73,4 @@ const ModalPuestos = ({ mostrarModal, setMostrarModal, guardarPuesto, editar, se
     )
 }
 
-export default ModalPuestos
+export default ModalTSpa

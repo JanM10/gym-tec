@@ -12,6 +12,7 @@ import GestionPuestos from "./pages/GestionPuestos";
 import NavbarPrueba from "./components/NavbarPrueba";
 import GestionServicios from "./pages/GestionServicios";
 import GestionInventario from "./pages/GestionInventario";
+import GestionTSpa from "./pages/GestionTSpa";
 
 function App() {
 
@@ -28,25 +29,19 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/Puestos" element={<GestionPuestos />} />
+          <Route path="/Servicios" element={<GestionServicios />} />
+          <Route path="/Inventario" element={<GestionInventario />} />
         </Routes>
       </Router>
 
-      <div className="container-fluid">
-    <h2 className='text-center'>React Search</h2>
-     <SearchComponent />     
-   </div>
-
       <NavbarPrueba />
-      
-      <GestionServicios />
-
-      <GestionPuestos />
   */
 
 
   return (
     <>
-      <GestionInventario />
+      
+      <GestionTSpa />
     </>
   );
 }
