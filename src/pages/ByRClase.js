@@ -82,7 +82,7 @@ const Calendario = () => {
         // Aquí debes implementar la lógica para obtener el valor correspondiente al día de la semana y la fecha actual desde el estado "datos"
         // Puedes utilizar un bucle for para buscar el valor correspondiente en el array de datos
         const valor = dia; // Define la variable "valor" con el valor correspondiente al día de la semana
-        return <td>{valor}</td>;
+        return <td>{"Clase: " + valor.clase}<br/>{"Fecha: " + valor.fecha}</td>
     };
 
     useEffect(() => {
@@ -108,13 +108,13 @@ const Calendario = () => {
                 <tbody>
                     <tr>
                         <td>Semana 1</td>
-                        {renderCelda(datosSemana1[0].clase)}
-                        {renderCelda(datosSemana1[1].clase)}
-                        {renderCelda(datosSemana1[2].clase)}
-                        {renderCelda(datosSemana1[3].clase)}
-                        {renderCelda(datosSemana1[4].clase)}
-                        {renderCelda(datosSemana1[5].clase)}
-                        {renderCelda(datosSemana1[6].clase)}
+                        {renderCelda(datosSemana1[0])}
+                        {renderCelda(datosSemana1[1])}
+                        {renderCelda(datosSemana1[2])}
+                        {renderCelda(datosSemana1[3])}
+                        {renderCelda(datosSemana1[4])}
+                        {renderCelda(datosSemana1[5])}
+                        {renderCelda(datosSemana1[6])}
                         <td>
                             <Button variant="secondary" onClick={() => mostrarModal('semana1')}>
                                 Copiar
@@ -123,13 +123,13 @@ const Calendario = () => {
                     </tr>
                     <tr>
                         <td>Semana 2</td>
-                        {renderCelda(datosSemana2[0].clase)}
-                        {renderCelda(datosSemana2[1].clase)}
-                        {renderCelda(datosSemana2[2].clase)}
-                        {renderCelda(datosSemana2[3].clase)}
-                        {renderCelda(datosSemana2[4].clase)}
-                        {renderCelda(datosSemana2[5].clase)}
-                        {renderCelda(datosSemana2[6].clase)}
+                        {renderCelda(datosSemana2[0])}
+                        {renderCelda(datosSemana2[1])}
+                        {renderCelda(datosSemana2[2])}
+                        {renderCelda(datosSemana2[3])}
+                        {renderCelda(datosSemana2[4])}
+                        {renderCelda(datosSemana2[5])}
+                        {renderCelda(datosSemana2[6])}
                         <td>
                             <Button variant="secondary" onClick={() => mostrarModal('semana2')}>
                                 Copiar
