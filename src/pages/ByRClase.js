@@ -66,6 +66,8 @@ const Calendario = () => {
         //console.log(semanaDestino);
         if (semanaOrigen==="semana1" && semanaDestino==="semana2"){
             datosSemana2=datosSemana1;
+        } else if (semanaOrigen==="semana2" && semanaDestino==="semana1"){
+            datosSemana1=datosSemana2;
         }
         // Aquí debes implementar la lógica para copiar los datos de la semana origen a la semana destino
         // Puedes utilizar un bucle for para recorrer los días de la semana origen y asignar sus valores a los días correspondientes de la semana destino
