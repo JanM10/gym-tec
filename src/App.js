@@ -12,6 +12,7 @@ import GestionInventario from "./pages/GestionInventario";
 import GestionTSpa from "./pages/GestionTSpa";
 import Sidebar from "./components/ConfigGimnasio/Sidebar";
 import ConfigGimnasio from "./components/ConfigGimnasio/ConfigGimnasio";
+import GestionPlanillas from "./pages/GestionPlanillas";
 
 function App() {
 
@@ -38,12 +39,14 @@ function App() {
       <ConfigGimnasio />
 
       <NavbarPrueba />
+
+      <GestionPuestos />
   */
 
 
   return (
     <>
-      <GestionPuestos />
+      <GestionPlanillas />
     </>
   );
 }

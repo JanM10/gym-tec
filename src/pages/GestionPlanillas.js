@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const GestionPlanillas = () => {
     const [planillas, setPlanillas] = useState([]);
@@ -7,36 +10,104 @@ const GestionPlanillas = () => {
     const [planillaId, setPlanillaId] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
+    //Metodo GET
+    const mostrarPlanilla = async () => {
+        const response = await fetch("http://localhost:49146/api/planilla")
+
+        if (response.ok) {
+            const planillas = await response.json();
+            setPlanillas(planillas)
+        } else {
+            console.log("Hubo un error")
+        }
+    }
+
+    useEffect(() => {
+        mostrarPlanilla()
+    }, [])
+
+    // Metodo POST
     const agregarPlanilla = () => {
         if (!descripcion) {
-            alert('Debes completar la descripción del planilla');
+            alert('Debes completar la descripción de la planilla');
             return;
         }
-        const nuevoPlanilla = { id: planillas.length + 1, descripcion };
-        setPlanillas([...planillas, nuevoPlanilla]);
-        setDescripcion('');
+        fetch('http://localhost:49146/api/planilla', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ descripcion: descripcion })
+        })
+            .then(response => response.json())
+            .then(data => {
+                const nuevoPlanilla = { id: data.id, descripcion: data.descripcion };
+                setPlanillas([...planillas, nuevoPlanilla]);
+                mostrarPlanilla();
+                setDescripcion('');
+            })
+            .catch(error => console.error(error));
     };
 
-    const eliminarPlanilla = (id) => {
-        const planillasActualizados = planillas.filter(planilla => planilla.id !== id);
-        setPlanillas(planillasActualizados);
-    };
-
+    // Metodo PUT
     const editarPlanilla = () => {
         if (!descripcion) {
-            alert('Debes completar la descripción del planilla');
+            alert('Debes completar la descripción de la planilla');
             return;
         }
-        const planillasActualizados = planillas.map(planilla => {
-            if (planilla.id === planillaId) {
-                return { ...planilla, descripcion };
-            }
-            return planilla;
-        });
-        setPlanillas(planillasActualizados);
-        setDescripcion('');
-        setPlanillaId(null);
-        setShowModal(false);
+
+        const planillaActualizada = { id: planillaId, descripcion };
+
+        fetch('http://localhost:49146/api/planilla', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(planillaActualizada)
+        })
+            .then(response => response.json())
+            .then(data => {
+                const planillasActualizadas = planillas.map(planilla => {
+                    if (planilla.id === data.id) {
+                        return data;
+                    }
+                    return planilla;
+                });
+                setPlanillas(planillasActualizadas);
+                mostrarPlanilla();
+                setDescripcion('');
+                setPlanillaId(null);
+                setShowModal(false);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Hubo un error al actualizar la planilla');
+            });
+    };
+
+
+    // Metodo DELETE
+    const eliminarPlanilla = (id) => {
+
+        var respuesta = window.confirm("Esta seguro que quiere eliminar el dato?")
+
+        if (!respuesta) {
+            return;
+        }
+
+        fetch(`http://localhost:49146/api/planilla/${id}`, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (response.ok) {
+                    const planillasActualizados = planillas.filter(planilla => planilla.id !== id);
+                    setPlanillas(planillasActualizados);
+                    toast.success('Planilla eliminada correctamente');
+                } else {
+                    console.log("Hubo un error");
+                }
+            })
+            .catch(error => console.error(error));
     };
 
     const handleEditar = (id) => {

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Col, Container, Row, Button } from "react-bootstrap";
 import TablaPuestos from "../components/GPuestos/TablaPuestos";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ModalPuestos from "../components/GPuestos/ModalPuestos";
