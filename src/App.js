@@ -14,6 +14,7 @@ import Sidebar from "./components/ConfigGimnasio/Sidebar";
 import ConfigGimnasio from "./components/ConfigGimnasio/ConfigGimnasio";
 import GestionPlanillas from "./pages/GestionPlanillas";
 import GestionTEquipo from "./pages/GestionTEquipo";
+import GeneracionPlanilla from "./pages/GeneracionPlanillav2";
 
 function App() {
 
@@ -47,7 +48,7 @@ function App() {
 
   return (
     <>
-      <GestionTEquipo />
+      <GeneracionPlanilla />
     </>
   );
 }

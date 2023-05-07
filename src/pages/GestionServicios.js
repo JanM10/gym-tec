@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const GestionServicios = () => {
     const [servicios, setServicios] = useState([]);
@@ -7,36 +9,102 @@ const GestionServicios = () => {
     const [servicioId, setServicioId] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
+    //Metodo GET
+    const mostrarServicio = async () => {
+        const response = await fetch("http://localhost:49146/api/servicios")
+
+        if (response.ok) {
+            const servicios = await response.json();
+            setServicios(servicios)
+        } else {
+            console.log("Hubo un error")
+        }
+    }
+
+    useEffect(() => {
+        mostrarServicio()
+    }, [])
+
+    // Metodo POST
     const agregarServicio = () => {
         if (!descripcion) {
-            alert('Debes completar la descripción del servicio');
+            alert('Debes completar la descripción de el servicio');
             return;
         }
-        const nuevoServicio = { id: servicios.length + 1, descripcion };
-        setServicios([...servicios, nuevoServicio]);
-        setDescripcion('');
+        fetch('http://localhost:49146/api/servicios', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ descripcion: descripcion })
+        })
+            .then(response => response.json())
+            .then(data => {
+                const nuevoServicio = { id: data.id, descripcion: data.descripcion };
+                setServicios([...servicios, nuevoServicio]);
+                mostrarServicio();
+                setDescripcion('');
+            })
+            .catch(error => console.error(error));
     };
 
+    // Metodo DELETE
     const eliminarServicio = (id) => {
-        const serviciosActualizados = servicios.filter(servicio => servicio.id !== id);
-        setServicios(serviciosActualizados);
+
+        var respuesta = window.confirm("¿Está seguro que desea eliminar el dato?")
+
+        if (!respuesta) {
+            return;
+        }
+
+        fetch(`http://localhost:49146/api/servicios/${id}`, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (response.ok) {
+                    const serviciosActualizados = servicios.filter(servicio => servicio.id !== id);
+                    setServicios(serviciosActualizados);
+                    toast.success('Servicio eliminada correctamente');
+                } else {
+                    console.log("Hubo un error");
+                }
+            })
+            .catch(error => console.error(error));
     };
 
     const editarServicio = () => {
         if (!descripcion) {
-            alert('Debes completar la descripción del servicio');
+            alert('Debes completar la descripción de el servicio');
             return;
         }
-        const serviciosActualizados = servicios.map(servicio => {
-            if (servicio.id === servicioId) {
-                return { ...servicio, descripcion };
-            }
-            return servicio;
-        });
-        setServicios(serviciosActualizados);
-        setDescripcion('');
-        setServicioId(null);
-        setShowModal(false);
+
+        const servicioActualizado = { id: servicioId, descripcion };
+
+        fetch('http://localhost:49146/api/servicios', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(servicioActualizado)
+        })
+            .then(response => response.json())
+            .then(data => {
+                const serviciosActualizados = servicios.map(servicio => {
+                    if (servicio.id === data.id) {
+                        return data;
+                    }
+                    return servicio;
+                });
+                setServicios(serviciosActualizados);
+                mostrarServicio();
+                setDescripcion('');
+                setServicioId(null);
+                setShowModal(false);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Hubo un error al actualizar el servicio');
+            });
     };
 
     const handleEditar = (id) => {
