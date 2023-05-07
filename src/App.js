@@ -13,6 +13,7 @@ import GestionTSpa from "./pages/GestionTSpa";
 import Sidebar from "./components/ConfigGimnasio/Sidebar";
 import ConfigGimnasio from "./components/ConfigGimnasio/ConfigGimnasio";
 import GestionPlanillas from "./pages/GestionPlanillas";
+import GestionTEquipo from "./pages/GestionTEquipo";
 
 function App() {
 
@@ -46,7 +47,7 @@ function App() {
 
   return (
     <>
-      <GestionPlanillas />
+      <GestionTEquipo />
     </>
   );
 }
