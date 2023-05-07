@@ -15,7 +15,7 @@ const GestionTSpa = () => {
     //Metodo GET
     const mostrarTSpa = async () => {
 
-        const response = await fetch("") //CAMBIAR LA URL
+        const response = await fetch("http://localhost:49146/api/tratamientos_spa")
 
         if (response.ok) {
             const data = await response.json();
@@ -30,9 +30,9 @@ const GestionTSpa = () => {
     }, [])
 
     //Metodo POST
-    const guardarInventario = async (puesto) => {
+    const guardarTSpa = async (puesto) => {
 
-        const response = await fetch("", { //CAMBIAR LA URL
+        const response = await fetch("http://localhost:49146/api/tratamientos_spa", { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -50,7 +50,7 @@ const GestionTSpa = () => {
     //Metodo PUT
     const editarTSpa = async (puesto) => {
 
-        const response = await fetch("", { //CAMBIAR LA URL
+        const response = await fetch("http://localhost:49146/api/tratamientos_spa", { 
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -74,7 +74,7 @@ const GestionTSpa = () => {
             return;
         }
 
-        const response = await fetch("" + id, { //CAMBIAR LA URL
+        const response = await fetch("http://localhost:49146/api/tratamientos_spa/" + id, { 
             method: 'DELETE',
         })
         toast.success("Dato borrado con exito")
@@ -113,7 +113,7 @@ const GestionTSpa = () => {
                 <ModalTSpa
                     mostrarModal={mostrarModal}
                     setMostrarModal={setMostrarModal}
-                    guardarInventario={guardarInventario}
+                    guardarTSpa={guardarTSpa}
                     editar={editar}
                     setEditar={setEditar}
                     editarTSpa={editarTSpa}

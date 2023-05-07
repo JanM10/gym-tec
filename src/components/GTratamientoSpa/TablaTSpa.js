@@ -13,6 +13,7 @@ const TablaTSpa = ({ data, setEditar, mostrarModal, setMostrarModal, eliminarTSp
                 <tr>
                     <th>Id</th>
                     <th>Tratamiento</th>
+                    <th>Sucursal Asociada</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -20,13 +21,14 @@ const TablaTSpa = ({ data, setEditar, mostrarModal, setMostrarModal, eliminarTSp
                 {
                     (data.length < 1) ? (
                         <tr>
-                            <td colSpan="3">Sin registros</td>
+                            <td colSpan="4">Sin registros</td>
                         </tr>
                     ) : (
                         data.map((item) => (
                             <tr key={item.id}>
                                 <td>{item.id}</td>
-                                <td>{item.tratamiento}</td>
+                                <td>{item.descripcion}</td>
+                                <td>{item.id_sucursal}</td>
                                 <td>
                                     <Button
                                      variant="primary"

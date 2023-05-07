@@ -2,8 +2,8 @@ import { Button, Table } from "react-bootstrap";
 
 const TablaInventario = ({ data, setEditar, mostrarModal, setMostrarModal, eliminarInventario }) => {
 
-    const enviarDatos = (puesto) => {
-        setEditar(puesto)
+    const enviarDatos = (inventario) => {
+        setEditar(inventario)
         setMostrarModal(!mostrarModal)
     }
 
@@ -11,11 +11,11 @@ const TablaInventario = ({ data, setEditar, mostrarModal, setMostrarModal, elimi
         <Table striped responsive>
             <thead>
                 <tr>
-                    <th>Tipo</th>
+                    <th>Numero Serie</th>
+                    <th>Tipo de equipo</th>
                     <th>Marca</th>
-                    <th>Numero Seire</th>
                     <th>Costo</th>
-                    <th>Asignacion</th>
+                    <th>Sucursal</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,24 +26,24 @@ const TablaInventario = ({ data, setEditar, mostrarModal, setMostrarModal, elimi
                         </tr>
                     ) : (
                         data.map((item) => (
-                            <tr key={item.id}>
-                                <td>{item.tipo}</td>
+                            <tr key={item.serie}>
+                                <td>{item.serie}</td> {/*numero_serie*/}
+                                <td>{item.id_equipo}</td> {/*Tipo*/}
                                 <td>{item.marca}</td>
-                                <td>{item.numero_serie}</td>
                                 <td>{item.costo}</td>
-                                <td>{item.asignacion}</td>
+                                <td>{item.id_sucursal}</td> {/*asignacion*/}
                                 <td>
                                     <Button
-                                     variant="primary"
-                                      size="sm"
-                                       className="me-2"
-                                       onClick={() => enviarDatos(item)}
-                                       >Editar</Button>
+                                        variant="primary"
+                                        size="sm"
+                                        className="me-2"
+                                        onClick={() => enviarDatos(item)}
+                                    >Editar</Button>
                                     <Button
-                                     variant="danger"
-                                      size="sm"
-                                      onClick={() => eliminarInventario(item.id)}
-                                      >Eliminar</Button>
+                                        variant="danger"
+                                        size="sm"
+                                        onClick={() => eliminarInventario(item.serie)}
+                                    >Eliminar</Button>
                                 </td>
                             </tr>
                         ))

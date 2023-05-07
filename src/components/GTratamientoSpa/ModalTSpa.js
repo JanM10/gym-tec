@@ -4,7 +4,8 @@ import { Form, FormGroup, Modal, ModalBody, ModalHeader, ModalFooter, Button } f
 // Estado inicial de la informacion 
 const modeloTSpa = {
     id: 0,
-    tratamiento: "",
+    descripcion: "",
+    id_sucursal: null,
 }
 
 const ModalTSpa = ({ mostrarModal, setMostrarModal, guardarTSpa, editar, setEditar, editarTSpa }) => {
@@ -51,17 +52,25 @@ const ModalTSpa = ({ mostrarModal, setMostrarModal, guardarTSpa, editar, setEdit
     return (
         <Modal show={mostrarModal} >
             <ModalHeader>
-                {TSpa.id == 0 ? "Nuevo TSpa" : "Editar TSpa"} 
+                {TSpa.id == 0 ? "Nuevo TSpa" : "Editar TSpa"}
             </ModalHeader>
             <ModalBody>
                 <Form>
                     <FormGroup>
-                        <Form.Label>Tratamiento</Form.Label>
+                        <Form.Label>Descripcion</Form.Label>
                         <Form.Control
                             type="text"
-                            placeholder="Tratamiento"
-                            name="tratamiento"
-                            onChange={(e) => actualizarDato(e)} value={TSpa.tratamiento} />
+                            placeholder="Descripcion"
+                            name="descripcion"
+                            onChange={(e) => actualizarDato(e)} value={TSpa.descripcion}
+                        />
+                        <Form.Label>Sucursal Asociada</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Sucursal Asociada"
+                            name="id_sucursal"
+                            onChange={(e) => actualizarDato(e)} value={TSpa.id_sucursal}
+                        />
                     </FormGroup>
                 </Form>
             </ModalBody>

@@ -15,7 +15,7 @@ const GestionInventario = () => {
     //Metodo GET
     const mostrarInventario = async () => {
 
-        const response = await fetch("") //CAMBIAR LA URL
+        const response = await fetch("http://localhost:49146/api/inventario") //CAMBIAR LA URL
 
         if (response.ok) {
             const data = await response.json();
@@ -30,14 +30,14 @@ const GestionInventario = () => {
     }, [])
 
     //Metodo POST
-    const guardarInventario = async (puesto) => {
+    const guardarInventario = async (inventario) => {
 
-        const response = await fetch("", { //CAMBIAR LA URL
+        const response = await fetch("http://localhost:49146/api/inventario", { //CAMBIAR LA URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-            body: JSON.stringify(puesto)
+            body: JSON.stringify(inventario)
         })
         toast.success("Dato añadido con exito")
 
@@ -48,14 +48,14 @@ const GestionInventario = () => {
     }
 
     //Metodo PUT
-    const editarInventario = async (puesto) => {
+    const editarInventario = async (inventario) => {
 
-        const response = await fetch("", { //CAMBIAR LA URL
+        const response = await fetch("http://localhost:49146/api/inventario", { //CAMBIAR LA URL
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-            body: JSON.stringify(puesto)
+            body: JSON.stringify(inventario)
         })
         toast.success("Dato editado con exito")
 
@@ -74,7 +74,7 @@ const GestionInventario = () => {
             return;
         }
 
-        const response = await fetch("" + id, { //CAMBIAR LA URL
+        const response = await fetch("http://localhost:49146/api/inventario/" + id, { //CAMBIAR LA URL
             method: 'DELETE',
         })
         toast.success("Dato borrado con exito")

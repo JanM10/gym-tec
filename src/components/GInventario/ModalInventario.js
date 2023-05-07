@@ -3,13 +3,18 @@ import { Form, FormGroup, Modal, ModalBody, ModalHeader, ModalFooter, Button } f
 
 // Estado inicial de la informacion 
 const modeloInventario = {
-    id: 0,
-    tipo: "",
+    serie: 0,
+    id_equipo: 0,
     marca: "",
-    numero_serie: null,
-    costo: null,
-    asignacion: null,
+    costo: "",
+    id_sucursal: 0,
 }
+
+/*
+
+ARREGLAR EL CODIGO YA QUE NO FUNCIONA 
+
+*/
 
 const ModalInventario = ({ mostrarModal, setMostrarModal, guardarInventario, editar, setEditar, editarInventario }) => {
 
@@ -17,7 +22,6 @@ const ModalInventario = ({ mostrarModal, setMostrarModal, guardarInventario, edi
 
     // Toda la informacion de los inputs se actualiza en la costante del estado inicial
     const actualizarDato = (e) => {
-        console.log(e.target.name + " : " + e.target.value)
         setInventario(
             {
                 ...inventario,
@@ -28,7 +32,7 @@ const ModalInventario = ({ mostrarModal, setMostrarModal, guardarInventario, edi
 
     // Se guarda los datos de los inputs y se envia para hacer el POST o PUT
     const enviarDatos = () => {
-        if (inventario.id == 0) {
+        if (inventario.serie == 0) {    
             guardarInventario(inventario)
         } else {
             editarInventario(inventario)
@@ -51,21 +55,27 @@ const ModalInventario = ({ mostrarModal, setMostrarModal, guardarInventario, edi
         setEditar(null)
     }
 
-
     return (
         <Modal show={mostrarModal} >
             <ModalHeader>
-                {inventario.id == 0 ? "Nuevo inventario" : "Editar inventario"} 
+                {inventario.serie == 0 ? "Nuevo inventario" : "Editar inventario"}
             </ModalHeader>
             <ModalBody>
                 <Form>
                     <FormGroup>
+                        <Form.Label>Numero de serie</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Numero de serie"
+                            name="serie"
+                            onChange={(e) => actualizarDato(e)} value={inventario.serie}
+                        />
                         <Form.Label>Tipo</Form.Label>
                         <Form.Control
                             type="text"
                             placeholder="Tipo"
-                            name="tipo"
-                            onChange={(e) => actualizarDato(e)} value={inventario.tipo}
+                            name="id_equipo"
+                            onChange={(e) => actualizarDato(e)} value={inventario.id_equipo}
                         />
                         <Form.Label>Marca</Form.Label>
                         <Form.Control
@@ -74,13 +84,6 @@ const ModalInventario = ({ mostrarModal, setMostrarModal, guardarInventario, edi
                             name="marca"
                             onChange={(e) => actualizarDato(e)} value={inventario.marca}
                         />
-                        <Form.Label>Numero de serie</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Numero de serie"
-                            name="numero_serie"
-                            onChange={(e) => actualizarDato(e)} value={inventario.numero_serie}
-                        />
                         <Form.Label>Costo</Form.Label>
                         <Form.Control
                             type="text"
@@ -88,12 +91,12 @@ const ModalInventario = ({ mostrarModal, setMostrarModal, guardarInventario, edi
                             name="costo"
                             onChange={(e) => actualizarDato(e)} value={inventario.costo}
                         />
-                        <Form.Label>Asignacion</Form.Label>
+                        <Form.Label>Sucursal</Form.Label>
                         <Form.Control
                             type="text"
-                            placeholder="Asignacion"
-                            name="asignacion"
-                            onChange={(e) => actualizarDato(e)} value={inventario.asignacion}
+                            placeholder="Sucursal"
+                            name="id_sucursal"
+                            onChange={(e) => actualizarDato(e)} value={inventario.id_sucursal}
                         />
                     </FormGroup>
                 </Form>
