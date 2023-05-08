@@ -100,7 +100,7 @@ const GEmpleados = () => {
     }
 
     //Metodo DELETE
-    const eliminarEmpleados = async (id) => {
+    const eliminarEmpleados = async (cedula) => {
 
         var respuesta = window.confirm("Esta seguro que quiere eliminar el dato?")
 
@@ -108,7 +108,7 @@ const GEmpleados = () => {
             return;
         }
 
-        const datosEmpleados = await fetch("http://localhost:49146/api/empleado/" + id, {
+        const datosEmpleados = await fetch("http://localhost:49146/api/empleado/" + cedula, {
             method: 'DELETE',
         })
         toast.success("Dato borrado con exito")

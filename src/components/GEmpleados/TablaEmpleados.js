@@ -61,7 +61,7 @@ const TablaEmpleados = ({ dataEmpleado, dataPuesto, dataSucursal, dataPlanilla, 
                                         <Button
                                             variant="danger"
                                             size="sm"
-                                            onClick={() => eliminarEmpleados(item.id)}
+                                            onClick={() => eliminarEmpleados(item.cedula)}
                                         >Eliminar</Button>
                                     </td>
                                 </tr>
