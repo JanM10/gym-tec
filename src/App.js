@@ -15,6 +15,7 @@ import ConfigGimnasio from "./components/ConfigGimnasio/ConfigGimnasio";
 import GestionPlanillas from "./pages/GestionPlanillas";
 import GestionTEquipo from "./pages/GestionTEquipo";
 import GeneracionPlanilla from "./pages/GeneracionPlanillav2";
+import GEmpleados from "./pages/GEmpleados";
 
 function App() {
 
@@ -43,12 +44,14 @@ function App() {
       <NavbarPrueba />
 
       <GestionPuestos />
+      
+      <GeneracionPlanilla />
   */
 
 
   return (
     <>
-      <GeneracionPlanilla />
+      <GEmpleados />
     </>
   );
 }

@@ -12,13 +12,14 @@ const GeneracionPlanilla = () => {
                 const response = await fetch('http://localhost:49146/api/empleado');
                 const data = await response.json();
                 setEmpleados(data);
+                console.log(data);
                 
                 //Obtener descripciones de sucursal y planilla
                 const sucursalResponse = await fetch('http://localhost:49146/api/sucursal');
                 const sucursalData = await sucursalResponse.json();
                 const sucursalMap = {};
                 sucursalData.forEach((sucursal) => {
-                    sucursalMap[sucursal.id] = sucursal.descripcion;
+                    sucursalMap[sucursal.id] = sucursal.nombre;
                 });
                 setSucursales(sucursalMap);
 
