@@ -23,7 +23,6 @@ const GEmpleados = () => {
                 const response = await fetch('http://localhost:49146/api/empleado');
                 const data = await response.json();
                 setEmpleados(data);
-                console.log(data);
                 
                 //Obtener descripciones de puestos
                 const puestoResponse = await fetch('http://localhost:49146/api/puesto');
@@ -155,6 +154,8 @@ const GEmpleados = () => {
                     editar={editar}
                     setEditar={setEditar}
                     editarEmpleados={editarEmpleados}
+                    dataEmpleado={empleados}
+                    dataPlanilla={planilla}
                 />
             </Container>
         </>

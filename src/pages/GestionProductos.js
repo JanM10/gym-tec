@@ -16,9 +16,9 @@ const GestionProductos = () => {
         { Nombre: 'Terapia', Código: '1233', Descripción: 'Masajes', Costos: '5000' },
         { Nombre: 'Terapia', Código: '1233', Descripción: 'Masajes', Costos: '5000' },
         { Nombre: 'Terapia', Código: '1233', Descripción: 'Masajes', Costos: '5000' },
-        { Nombre: 'Terapia', Código: '1233', Descripción: 'Masajes', Costos: '5000' },
-        { Nombre: 'Terapia', Código: '1233', Descripción: 'Masajes', Costos: '5000' },
-        { Nombre: 'Terapia', Código: '1233', Descripción: 'Masajes', Costos: '5000' }];
+        { Nombre: 'Proteina', Código: '1233', Descripción: 'Proteina en polvo', Costos: '10000' },
+        { Nombre: 'Coca Cola', Código: '2222', Descripción: 'Bebida', Costos: '2500' },
+        { Nombre: 'Agua', Código: '111', Descripción: 'Bebida', Costos: '2300' }];
 
     const columnas = [
         {

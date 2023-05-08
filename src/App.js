@@ -46,6 +46,9 @@ function App() {
       <GestionPuestos />
       
       <GeneracionPlanilla />
+
+      
+      <GestionServicios />
   */
 
 

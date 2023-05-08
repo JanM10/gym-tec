@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 const GestionServicios = () => {
     const [servicios, setServicios] = useState([]);
     const [descripcion, setDescripcion] = useState('');
+    const [id_sucursal, setId_sucursal] = useState('');
     const [servicioId, setServicioId] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
@@ -36,11 +37,11 @@ const GestionServicios = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ descripcion: descripcion })
+            body: JSON.stringify({ descripcion: descripcion})
         })
             .then(response => response.json())
             .then(data => {
-                const nuevoServicio = { id: data.id, descripcion: data.descripcion };
+                const nuevoServicio = { id: data.id, descripcion: data.descripcion};
                 setServicios([...servicios, nuevoServicio]);
                 mostrarServicio();
                 setDescripcion('');

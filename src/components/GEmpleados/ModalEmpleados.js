@@ -18,7 +18,8 @@ const modeloEmpleados = {
     password: "",
 }
 
-const ModalEmpleados = ({ mostrarModal, setMostrarModal, guardarEmpleados, editar, setEditar, editarEmpleados }) => {
+const ModalEmpleados = ({ mostrarModal, setMostrarModal, guardarEmpleados,
+    editar, setEditar, editarEmpleados, dataEmpleado, dataPlanilla }) => {
 
     const [empleados, setEmpleados] = useState(modeloEmpleados);
 
@@ -57,7 +58,6 @@ const ModalEmpleados = ({ mostrarModal, setMostrarModal, guardarEmpleados, edita
         setMostrarModal(!mostrarModal)
         setEditar(null)
     }
-
 
     return (
         <Modal show={mostrarModal} >
@@ -120,7 +120,7 @@ const ModalEmpleados = ({ mostrarModal, setMostrarModal, guardarEmpleados, edita
                             type="text"
                             placeholder="Puesto que desempeña"
                             name="id_puesto"
-                            onChange={(e) => actualizarDato(e)} value={empleados.id_puesto} /> {/*creo que no funciona */}
+                            onChange={(e) => actualizarDato(e)} value={empleados.id_puesto} />
                     </FormGroup>
                     <FormGroup>
                         <Form.Label>Sucursal en la que trabaja</Form.Label>
@@ -128,15 +128,23 @@ const ModalEmpleados = ({ mostrarModal, setMostrarModal, guardarEmpleados, edita
                             type="text"
                             placeholder="Sucursal en la que trabaja"
                             name="id_sucursal"
-                            onChange={(e) => actualizarDato(e)} value={empleados.id_sucursal} /> {/*creo que no funciona */}
+                            onChange={(e) => actualizarDato(e)} value={empleados.id_sucursal} />
                     </FormGroup>
                     <FormGroup>
                         <Form.Label>Tipo de planilla</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Tipo de planilla" 
+                        <Form.Select
                             name="id_planilla"
-                            onChange={(e) => actualizarDato(e)} value={empleados.id_planilla} /> {/*creo que no funciona */}
+                            onChange={(e) => actualizarDato(e)} value={empleados.id_planilla}
+                        >
+                            {dataEmpleado.map(elemento => (
+                                <option
+                                    key={elemento.id_planilla}
+                                    value={elemento.id_planilla}
+                                >
+                                    {dataPlanilla[elemento.id_planilla]}
+                                </option>
+                            ))}
+                        </Form.Select>
                     </FormGroup>
                     <FormGroup>
                         <Form.Label>Salario</Form.Label>
