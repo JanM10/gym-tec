@@ -47,14 +47,14 @@ function App() {
       
       <GeneracionPlanilla />
 
+      <GEmpleados />
       
-      <GestionServicios />
   */
 
 
   return (
     <>
-      <GEmpleados />
+      <GestionServicios />
     </>
   );
 }

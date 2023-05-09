@@ -37,11 +37,11 @@ const GestionServicios = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ descripcion: descripcion})
+            body: JSON.stringify({ descripcion: descripcion, id_sucursal: 1 })
         })
             .then(response => response.json())
             .then(data => {
-                const nuevoServicio = { id: data.id, descripcion: data.descripcion};
+                const nuevoServicio = { id: data.id, descripcion: data.descripcion };
                 setServicios([...servicios, nuevoServicio]);
                 mostrarServicio();
                 setDescripcion('');
@@ -73,13 +73,14 @@ const GestionServicios = () => {
             .catch(error => console.error(error));
     };
 
+    // Metodo PUT
     const editarServicio = () => {
         if (!descripcion) {
             alert('Debes completar la descripción de el servicio');
             return;
         }
 
-        const servicioActualizado = { id: servicioId, descripcion };
+        const servicioActualizado = { id: servicioId, descripcion, id_sucursal: 1 };
 
         fetch('http://localhost:49146/api/servicios', {
             method: 'PUT',
