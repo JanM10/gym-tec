@@ -1,24 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
 
-let datosSemana1 = [
-    { clase: "Yoga", fecha: "2023-05-01" },
-    { clase: "Indoor Cycling", fecha: "2023-05-02" },
-    { clase: "Yoga", fecha: "2023-05-03" },
-    { clase: "Pilates", fecha: "2023-05-04" },
-    { clase: "Boxeo", fecha: "2023-05-05" },
-    { clase: "Karate", fecha: "2023-05-06" },
-    { clase: "Vacío", fecha: "2023-05-07" }
+let datosSemana1 = [  { tratamientos: ["Masaje relajante, Masaje Fuerte"], productos: ["Cosas random"], clases: ["Yoga"]}
 ];
 
-let datosSemana2 = [
-    { clase: "Pilates", fecha: "2023-05-08" },
-    { clase: "Boxeo", fecha: "2023-05-09" },
-    { clase: "Boxeo", fecha: "2023-05-10" },
-    { clase: "Yoga", fecha: "2023-05-11" },
-    { clase: "Karate", fecha: "2023-05-12" },
-    { clase: "Indoor Cycling", fecha: "2023-05-13" },
-    { clase: "Natación", fecha: "2023-05-14" }
+
+let datosSemana2 = [  { tratamientos: ["Masaje relajante"], productos: ["Cosas random"], clases: ["Indoor Cycling"]}
 ];
 
 
@@ -41,18 +28,8 @@ const CopiarGimnasio = () => {
     const copiarSemana = (semanaOrigen, semanaDestino) => {
         if (semanaOrigen === "semana1" && semanaDestino === "semana2") {
             datosSemana2 = datosSemana1;
-            for (let i = 0; i < datosSemana2.length; i++) {
-                let fecha = new Date(datosSemana2[i].fecha);
-                fecha.setDate(fecha.getDate() + 7);
-                datosSemana2[i].fecha = fecha.toISOString().slice(0, 10);
-            }
         } else if (semanaOrigen === "semana2" && semanaDestino === "semana1") {
             datosSemana1 = datosSemana2;
-            for (let i = 0; i < datosSemana2.length; i++) {
-                let fecha = new Date(datosSemana2[i].fecha);
-                fecha.setDate(fecha.getDate() - 7);
-                datosSemana2[i].fecha = fecha.toISOString().slice(0, 10);
-            }
         }
           
         // Aquí debes implementar la lógica para copiar los datos de la semana origen a la semana destino
@@ -80,7 +57,7 @@ const CopiarGimnasio = () => {
         // Aquí debes implementar la lógica para obtener el valor correspondiente al día de la semana y la fecha actual desde el estado "datos"
         // Puedes utilizar un bucle for para buscar el valor correspondiente en el array de datos
         const valor = dia; // Define la variable "valor" con el valor correspondiente al día de la semana
-        return <td>{"Clase: " + valor.clase}<br/>{"Fecha: " + valor.fecha}</td>
+        return <td>{valor}</td>
     };
 
     useEffect(() => {
@@ -97,22 +74,18 @@ const CopiarGimnasio = () => {
                         <th>Tratamientos Spa</th>
                         <th>Productos</th>
                         <th>Clases</th>
-                        <th>Jueves</th>
+                        {/* <th>Jueves</th>
                         <th>Viernes</th>
                         <th>Sábado</th>
-                        <th>Domingo</th>
+                        <th>Domingo</th> */}
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Semana 1</td>
-                        {renderCelda(datosSemana1[0])}
-                        {renderCelda(datosSemana1[1])}
-                        {renderCelda(datosSemana1[2])}
-                        {renderCelda(datosSemana1[3])}
-                        {renderCelda(datosSemana1[4])}
-                        {renderCelda(datosSemana1[5])}
-                        {renderCelda(datosSemana1[6])}
+                        {renderCelda(datosSemana1[0].tratamientos)}
+                        {renderCelda(datosSemana1[0].productos)}
+                        {renderCelda(datosSemana1[0].clases)}
                         <td>
                             <Button variant="secondary" onClick={() => mostrarModal('semana1')}>
                                 Copiar
@@ -121,13 +94,9 @@ const CopiarGimnasio = () => {
                     </tr>
                     <tr>
                         <td>Semana 2</td>
-                        {renderCelda(datosSemana2[0])}
-                        {renderCelda(datosSemana2[1])}
-                        {renderCelda(datosSemana2[2])}
-                        {renderCelda(datosSemana2[3])}
-                        {renderCelda(datosSemana2[4])}
-                        {renderCelda(datosSemana2[5])}
-                        {renderCelda(datosSemana2[6])}
+                        {renderCelda(datosSemana2[0].tratamientos)}
+                        {renderCelda(datosSemana2[0].productos)}
+                        {renderCelda(datosSemana2[0].clases)}
                         <td>
                             <Button variant="secondary" onClick={() => mostrarModal('semana2')}>
                                 Copiar
