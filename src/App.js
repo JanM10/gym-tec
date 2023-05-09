@@ -15,6 +15,7 @@ import ConfigGimnasio from "./components/ConfigGimnasio/ConfigGimnasio";
 import GestionPlanillas from "./pages/GestionPlanillas";
 import GestionTEquipo from "./pages/GestionTEquipo";
 import GeneracionPlanilla from "./pages/GeneracionPlanillav2";
+import CopiarGimnasio from "./pages/copiarGimnasio";
 import GEmpleados from "./pages/GEmpleados";
 
 function App() {
@@ -50,7 +51,6 @@ function App() {
       <GEmpleados />
       
   */
-
 
   return (
     <>
