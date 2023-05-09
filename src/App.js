@@ -17,6 +17,7 @@ import GeneracionPlanilla from "./pages/GeneracionPlanillav2";
 import CopiarGimnasio from "./pages/copiarGimnasio";
 import GEmpleados from "./pages/GEmpleados";
 import GSucursales from "./pages/GSucursales";
+import Calendario from "./pages/ByRClase";
 
 function App() {
 
@@ -54,7 +55,7 @@ function App() {
 
   return (
     <>
-      <Login/>
+      <Calendario/>
     </>
   );
 }

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
 
-let datosSemana1 = [  { tratamientos: ["Masaje relajante, Masaje Fuerte"], productos: ["Cosas random"], clases: ["Yoga"]}
+let datosSemana1 = [  { tratamientos: ["Masaje relajante, Masaje normal"], productos: ["Crema"], clases: ["Yoga"]}
 ];
 
 
-let datosSemana2 = [  { tratamientos: ["Masaje relajante"], productos: ["Cosas random"], clases: ["Indoor Cycling"]}
+let datosSemana2 = [  { tratamientos: ["Masaje relajante"], productos: ["Aceite"], clases: ["Indoor Cycling"]}
 ];
 
 
