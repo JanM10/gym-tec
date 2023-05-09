@@ -6,6 +6,8 @@ const GeneracionPlanilla = () => {
     const [sucursales, setSucursales] = useState({});
     const [planillas, setPlanillas] = useState({});
 
+    let valorMonto=0
+
     useEffect(() => {
         async function fetchData() {
             try {
@@ -37,9 +39,11 @@ const GeneracionPlanilla = () => {
         fetchData();
     }, []);
 
-    const handleMontoOptionChange = (event) => {
-        //Aquí puedes modificar la lógica para calcular el monto según la opción seleccionada
-        console.log(event.target.value);
+    const handleMontoOptionChange = (salario, planilla) => {
+        if (planilla=="Mensual"){
+            valorMonto=10000
+        }
+        return valorMonto
     }
 
     return (
@@ -65,15 +69,7 @@ const GeneracionPlanilla = () => {
                                 <td>{empleado.nombre}</td>
                                 <td>{empleado.horas}</td>
                                 <td>
-                                    <label>
-                                        <input type="radio" name={`monto-${empleado.id}`} value="option1" onChange={handleMontoOptionChange} />
-                                        Opción 1
-                                    </label>
-                                    <br />
-                                    <label>
-                                        <input type="radio" name={`monto-${empleado.id}`} value="option2" onChange={handleMontoOptionChange} />
-                                        Opción 2
-                                    </label>
+                                {() => handleMontoOptionChange(empleado.salario,planillas[empleado.id_planilla])}
                                 </td>
                                 <td>{planillas[empleado.id_planilla]}</td>
                             </tr>
