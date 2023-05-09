@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
-import SucursalesAPI from "./pages/SucursalesAPI";
 import GestionProductos from "./pages/GestionProductos";
 import SearchComponent from "./pages/SearchComponent";
 import GestionPuestos from "./pages/GestionPuestos";
@@ -17,6 +16,7 @@ import GestionTEquipo from "./pages/GestionTEquipo";
 import GeneracionPlanilla from "./pages/GeneracionPlanillav2";
 import CopiarGimnasio from "./pages/copiarGimnasio";
 import GEmpleados from "./pages/GEmpleados";
+import GSucursales from "./pages/GSucursales";
 
 function App() {
 
@@ -54,7 +54,7 @@ function App() {
 
   return (
     <>
-      <GestionServicios />
+      <GSucursales />
     </>
   );
 }
