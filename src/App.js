@@ -19,6 +19,7 @@ import GeneracionPlanilla from "./pages/GeneracionPlanillav2";
 import CopiarGimnasio from "./pages/copiarGimnasio";
 import GEmpleados from "./pages/GEmpleados";
 import GSucursales from "./pages/GSucursales";
+import Calendario from "./pages/ByRClase";
 import TratamientoSpa from "./components/ConfigGimnasio/TratamientoSpa";
 
 function App() {
@@ -48,21 +49,7 @@ function App() {
 
   return (
     <>
-    <ToastContainer theme="colored"/>
-    <Router>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/Register" element={<Register />} />
-          <Route path="/Sucursales" element={<GSucursales />} />
-          <Route path="/Register" element={<Register />} />
-          <Route path="/Puestos" element={<GestionPuestos />} />
-          <Route path="/Servicios" element={<GestionServicios />} />
-          <Route path="/Inventario" element={<GestionInventario />} />
-          <Route path="/TSpa" element={<GestionTSpa />} />
-          <Route path="/ConfigGimnasio" element={<ConfigGimnasio />} />
-          <Route path="/TratamientoSpa" element={<TratamientoSpa />} />
-        </Routes>
-      </Router>
+      <GSucursales />
     </>
   );
 }
