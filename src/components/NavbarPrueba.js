@@ -19,7 +19,7 @@ const NavbarPrueba = () => {
                         <NavDropdown title="Mas Links" id="collasible-nav-dropdown">
                             <NavDropdown.Item href="/Empleados">Empleados</NavDropdown.Item>
                             <NavDropdown.Item href="/Inventario">Inventario</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                            <NavDropdown.Item href="/ConfigGimnasio">ConfigGimnasio</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.4">
                                 Separated link
