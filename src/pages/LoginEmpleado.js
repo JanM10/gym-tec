@@ -1,16 +1,12 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom";
-import "../styles/Login.css";
+import "../styles/LoginEmpleado.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
-function change_register() {
-    window.location = "Register"
-}
-
-export const LoginCliente = () => {
-    const [cedula, setCedula] = useState('');
+export const LoginEmpleado = () => {
+    const [correo, setCorreo] = useState('');
     const [password, setPassword] = useState('');
 
     const usenavigate = useNavigate();
@@ -26,13 +22,13 @@ export const LoginCliente = () => {
     const ProceedLogin = (e) => {
         e.preventDefault();
         if (validate()) {
-            fetch("http://localhost:49146/api/cliente/" + cedula).then((res) => {
+            fetch("http://localhost:49146/api/empleado/" + correo).then((res) => {
                 return res.json();
             }).then((resp) => {
-                console.log(resp[0].cedula)
+                console.log(resp[0].correo)
                 console.log(resp[0].password)
                 if (Object.keys(resp).length === 0) {
-                    toast.error('Por favor ingrese un cedula valida');
+                    toast.error('Por favor ingrese un correo valida');
                 } else {
                     if (resp[0].password === encryptPassword(password)) {
                         toast.success('Login exitoso');
@@ -49,7 +45,7 @@ export const LoginCliente = () => {
 
     const validate = () => {
         let result = true;
-        if (cedula === '' || cedula === null) {
+        if (correo === '' || correo === null) {
             result = false;
             toast.warning('Por favor ingrese un usuario');
         }
@@ -61,32 +57,26 @@ export const LoginCliente = () => {
     }
 
     return (
-        <div className="page">
-            <form onSubmit={ProceedLogin} className="cover">
-                <label htmlFor="cedula" className="login_label">Cédula</label>
-                <input value={cedula} onChange={(e) => setCedula(e.target.value)}
+        <div className="page_e">
+            <form onSubmit={ProceedLogin} className="cover_e">
+                <label htmlFor="correo" className="login_label_e">Correo</label>
+                <input value={correo} onChange={(e) => setCorreo(e.target.value)}
                     type="text"
-                    placeholder="Inserte su cedula"
-                    id="cedula"
-                    name="cedula"
-                    className="login_input"></input>
+                    placeholder="Inserte su correo"
+                    id="correo"
+                    name="correo"
+                    className="login_input_e"></input>
 
-                <label htmlFor="Password" className="login_label">Password</label>
+                <label htmlFor="Password" className="login_label_e">Password</label>
                 <input value={password} onChange={(e) => setPassword(e.target.value)}
                     type="password"
                     placeholder="Inserte su Password"
                     id="password"
                     name="password"
-                    className="login_input"></input>
+                    className="login_input_e"></input>
 
-                <button type="submit" className="login_btn">Log In</button>
-
-                {/* () => props.onFormSwitch('register') */}
-                <button onClick={change_register}
-                    className="registrar_btn">No tienes cuenta? Registrate aqui.
-                </button>
+                <button type="submit" className="login_btn_e">Log In</button>
             </form>
-
         </div>
     )
 }
