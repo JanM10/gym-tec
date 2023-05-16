@@ -31,6 +31,16 @@ function App() {
   }
 
   /*
+  <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="/Puestos" element={<GestionPuestos />} />
+          <Route path="/Servicios" element={<GestionServicios />} />
+          <Route path="/Inventario" element={<GestionInventario />} />
+          <Route path="/TSpa" element={<GestionTSpa />} />
+        </Routes>
+      </Router>
       
 
       <GestionProductos />
@@ -49,7 +59,17 @@ function App() {
 
   return (
     <>
-      <GSucursales />
+      <ToastContainer theme="colored" />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="/Puestos" element={<GestionPuestos />} />
+          <Route path="/Servicios" element={<GestionServicios />} />
+          <Route path="/Inventario" element={<GestionInventario />} />
+          <Route path="/TSpa" element={<GestionTSpa />} />
+        </Routes>
+      </Router>
     </>
   );
 }
