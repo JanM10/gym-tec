@@ -14,7 +14,7 @@ const GeneracionPlanilla = () => {
                 const response = await fetch('http://localhost:49146/api/empleado');
                 const data = await response.json();
                 setEmpleados(data);
-                console.log(data);
+                
                 
                 //Obtener descripciones de sucursal y planilla
                 const sucursalResponse = await fetch('http://localhost:49146/api/sucursal');
@@ -32,6 +32,7 @@ const GeneracionPlanilla = () => {
                     planillaMap[planilla.id] = planilla.descripcion;
                 });
                 setPlanillas(planillaMap);
+                
             } catch (error) {
                 console.log(error);
             }
@@ -39,9 +40,14 @@ const GeneracionPlanilla = () => {
         fetchData();
     }, []);
 
-    const handleMontoOptionChange = (salario, planilla) => {
-        if (planilla=="Mensual"){
-            valorMonto=10000
+    const handleMontoOptionChange = (salario, planilla, horas, clase) => {
+        console.log(planilla)
+        if (planilla==="Mensual"){
+            valorMonto=salario
+        }else if (planilla==="Por horas"){
+            valorMonto=salario*horas
+        }else if (planilla==="Por clase"){
+            valorMonto=salario*clase
         }
         return valorMonto
     }
@@ -69,7 +75,7 @@ const GeneracionPlanilla = () => {
                                 <td>{empleado.nombre}</td>
                                 <td>{empleado.horas}</td>
                                 <td>
-                                {() => handleMontoOptionChange(empleado.salario,planillas[empleado.id_planilla])}
+                                {handleMontoOptionChange(empleado.salario,planillas[empleado.id_planilla], empleado.horas, 4)}
                                 </td>
                                 <td>{planillas[empleado.id_planilla]}</td>
                             </tr>

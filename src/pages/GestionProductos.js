@@ -5,53 +5,71 @@ import "react-toastify/dist/ReactToastify.css";
 
 const GestionProductos = () => {
     const [productos, setProductos] = useState([]);
+    const [nombre, setNombre] = useState('');
+    const [codigo, setCodigo] = useState('');
+    const [costo, setCosto] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [productoId, setProductoId] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
-    //Metodo GET
-    const mostrarProducto = async () => {
-        const response = await fetch("http://localhost:49146/api/productos")
+    // Método GET
+    const mostrarProductos = async () => {
+        const response = await fetch("http://localhost:49146/api/productos");
 
         if (response.ok) {
             const productos = await response.json();
-            setProductos(productos)
+            setProductos(productos);
         } else {
-            console.log("Hubo un error")
+            console.log("Hubo un error");
         }
-    }
+    };
 
     useEffect(() => {
-        mostrarProducto()
-    }, [])
+        mostrarProductos();
+    }, []);
 
-    // Metodo POST
+    // Método POST
     const agregarProducto = () => {
-        if (!descripcion) {
-            alert('Debes completar la descripción de el producto');
+        if (!descripcion || !nombre || !codigo || !costo) {
+            alert('Debes completar todos los campos');
             return;
         }
+
         fetch('http://localhost:49146/api/productos', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ descripcion: descripcion, id_sucursal:1 })
+            body: JSON.stringify({
+                nombre: nombre,
+                codigo: codigo,
+                costo: costo,
+                descripcion: descripcion,
+                id_sucursal: 1
+            })
         })
             .then(response => response.json())
             .then(data => {
-                const nuevoProducto = { id: data.id, descripcion: data.descripcion };
+                const nuevoProducto = {
+                    id: data.id,
+                    nombre: data.nombre,
+                    codigo: data.codigo,
+                    costo: data.costo,
+                    descripcion: data.descripcion
+                };
                 setProductos([...productos, nuevoProducto]);
-                mostrarProducto();
+                mostrarProductos();
+                setNombre('');
+                setCodigo('');
+                setCosto('');
                 setDescripcion('');
             })
             .catch(error => console.error(error));
     };
 
-    // Metodo DELETE
+    // Método DELETE
     const eliminarProducto = (id) => {
-
-        var respuesta = window.confirm("¿Está seguro que desea eliminar el dato?")
+        var respuesta = window.confirm("¿Está seguro que desea eliminar el dato?");
 
         if (!respuesta) {
             return;
@@ -64,7 +82,7 @@ const GestionProductos = () => {
                 if (response.ok) {
                     const productosActualizados = productos.filter(producto => producto.id !== id);
                     setProductos(productosActualizados);
-                    toast.success('Producto eliminada correctamente');
+                    toast.success('Producto eliminado correctamente');
                 } else {
                     console.log("Hubo un error");
                 }
@@ -72,16 +90,23 @@ const GestionProductos = () => {
             .catch(error => console.error(error));
     };
 
-    //Metodo PUT
+    // Método PUT
     const editarProducto = () => {
-        if (!descripcion) {
-            alert('Debes completar la descripción de el producto');
+        if (!descripcion || !nombre || !codigo || !costo) {
+            alert('Debes completar todos los campos');
             return;
         }
 
-        const productoActualizado = { id: productoId, descripcion, id_sucursal:1 };
+        const productoActualizado = {
+            id: productoId,
+            nombre: nombre,
+            codigo: codigo,
+            costo: costo,
+            descripcion: descripcion,
+            id_sucursal: 1
+        };
 
-        fetch('http://localhost:49146/api/productos', {
+        fetch(`http://localhost:49146/api/productos/${productoId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -89,6 +114,7 @@ const GestionProductos = () => {
             body: JSON.stringify(productoActualizado)
         })
             .then(response => response.json())
+
             .then(data => {
                 const productosActualizados = productos.map(producto => {
                     if (producto.id === data.id) {
@@ -97,7 +123,10 @@ const GestionProductos = () => {
                     return producto;
                 });
                 setProductos(productosActualizados);
-                mostrarProducto();
+                mostrarProductos();
+                setNombre('');
+                setCodigo('');
+                setCosto('');
                 setDescripcion('');
                 setProductoId(null);
                 setShowModal(false);
@@ -110,6 +139,9 @@ const GestionProductos = () => {
 
     const handleEditar = (id) => {
         const productoEncontrado = productos.find(producto => producto.id === id);
+        setNombre(productoEncontrado.nombre);
+        setCodigo(productoEncontrado.codigo);
+        setCosto(productoEncontrado.costo);
         setDescripcion(productoEncontrado.descripcion);
         setProductoId(id);
         setShowModal(true);
@@ -117,6 +149,9 @@ const GestionProductos = () => {
 
     const handleModalClose = () => {
         setShowModal(false);
+        setNombre('');
+        setCodigo('');
+        setCosto('');
         setDescripcion('');
         setProductoId(null);
     };
@@ -126,19 +161,27 @@ const GestionProductos = () => {
             <h2 className="my-4">Gestión de Productos</h2>
             <div className="row mb-3">
                 <div className="col-md-6">
-                    <label htmlFor="descripcion" className="form-label">Descripción:</label>
-                    <textarea
-                        id="descripcion"
-                        className="form-control"
-                        maxLength={50}
-                        value={descripcion}
-                        onChange={e => setDescripcion(e.target.value)}
-                    />
-                    <small>{descripcion.length}/50 caracteres</small>
+                    <Form.Group controlId="nombre">
+                        <Form.Label>Nombre:</Form.Label>
+                        <Form.Control type="text" value={nombre} onChange={e => setNombre(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group controlId="codigo">
+                        <Form.Label>Código:</Form.Label>
+                        <Form.Control type="text" value={codigo} onChange={e => setCodigo(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group controlId="costo">
+                        <Form.Label>Costo:</Form.Label>
+                        <Form.Control type="text" value={costo} onChange={e => setCosto(e.target.value)} />
+                    </Form.Group>
+                    <Form.Group controlId="descripcion">
+                        <Form.Label>Descripción:</Form.Label>
+                        <Form.Control as="textarea" maxLength={50} value={descripcion} onChange={e => setDescripcion(e.target.value)} />
+                        <small>{descripcion.length}/50 caracteres</small>
+                    </Form.Group>
                 </div>
                 <div className="col-md-3 d-flex align-items-end">
                     {productoId === null ? (
-                        <Button variant="primary" onClick={agregarProducto}>Agregar Productos</Button>
+                        <Button variant="primary" onClick={agregarProducto}>Agregar Producto</Button>
                     ) : (
                         <Button variant="primary" onClick={() => setShowModal(true)}>Editar Producto</Button>
                     )}
@@ -148,6 +191,9 @@ const GestionProductos = () => {
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Código</th>
+                        <th>Costo</th>
                         <th>Descripción</th>
                         <th>Acciones</th>
                     </tr>
@@ -156,6 +202,9 @@ const GestionProductos = () => {
                     {productos.map((producto, index) => (
                         <tr key={index}>
                             <td>{producto.id}</td>
+                            <td>{producto.nombre}</td>
+                            <td>{producto.codigo}</td>
+                            <td>{producto.costo}</td>
                             <td>{producto.descripcion}</td>
                             <td>
                                 <Button variant="danger" onClick={() => eliminarProducto(producto.id)}>Eliminar</Button>
@@ -172,9 +221,22 @@ const GestionProductos = () => {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
+                        <Form.Group controlId="nombre">
+                            <Form.Label>Nombre:</Form.Label>
+                            <Form.Control type="text" value={nombre} onChange={e => setNombre(e.target.value)} />
+                        </Form.Group>
+                        <Form.Group controlId="codigo">
+                            <Form.Label>Código:</Form.Label>
+                            <Form.Control type="text" value={codigo} onChange={e => setCodigo(e.target.value)} />
+                        </Form.Group>
+                        <Form.Group controlId="costo">
+                            <Form.Label>Costo:</Form.Label>
+                            <Form.Control type="text" value={costo} onChange={e => setCosto(e.target.value)} />
+                        </Form.Group>
                         <Form.Group controlId="descripcion">
                             <Form.Label>Descripción:</Form.Label>
-                            <Form.Control type="text" maxLength={50} value={descripcion} onChange={e => setDescripcion(e.target.value)} />
+                            <Form.Control as="textarea" maxLength={50} value={descripcion} onChange={e => setDescripcion(e.target.value)} />
+                            <small>{descripcion.length}/50 caracteres</small>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
@@ -187,4 +249,4 @@ const GestionProductos = () => {
     );
 };
 
-export default GestionProductos;
+export default GestionProductos;        
