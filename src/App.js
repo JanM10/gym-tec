@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Login } from "./pages/Login";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { LoginCliente } from "./pages/LoginCliente";
 import { Register } from "./pages/Register";
 import GestionProductos from "./pages/GestionProductos";
 import SearchComponent from "./pages/SearchComponent";
@@ -18,6 +20,8 @@ import CopiarGimnasio from "./pages/copiarGimnasio";
 import GEmpleados from "./pages/GEmpleados";
 import GSucursales from "./pages/GSucursales";
 import Calendario from "./pages/ByRClase";
+import TratamientoSpa from "./components/ConfigGimnasio/TratamientoSpa";
+import { LoginEmpleado } from "./pages/LoginEmpleado";
 
 function App() {
 
@@ -28,7 +32,7 @@ function App() {
   }
 
   /*
-      <Router>
+  <Router>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/Register" element={<Register />} />
@@ -38,6 +42,7 @@ function App() {
           <Route path="/TSpa" element={<GestionTSpa />} />
         </Routes>
       </Router>
+      
 
       <GestionProductos />
 
@@ -49,13 +54,24 @@ function App() {
       
       <GeneracionPlanilla />
 
-      <GEmpleados />
+      <GSucursales />
       
   */
 
   return (
     <>
-      <GeneracionPlanilla/>
+      <ToastContainer theme="colored" />
+      <Router>
+        <Routes>
+          <Route path="/" element={<LoginCliente />} />
+          <Route path="/LoginEmpleado" element={<LoginEmpleado />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="/Puestos" element={<GestionPuestos />} />
+          <Route path="/Servicios" element={<GestionServicios />} />
+          <Route path="/Inventario" element={<GestionInventario />} />
+          <Route path="/TSpa" element={<GestionTSpa />} />
+        </Routes>
+      </Router>
     </>
   );
 }
