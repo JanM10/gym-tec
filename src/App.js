@@ -60,18 +60,7 @@ function App() {
 
   return (
     <>
-      <ToastContainer theme="colored" />
-      <Router>
-        <Routes>
-          <Route path="/" element={<LoginCliente />} />
-          <Route path="/LoginEmpleado" element={<LoginEmpleado />} />
-          <Route path="/Register" element={<Register />} />
-          <Route path="/Puestos" element={<GestionPuestos />} />
-          <Route path="/Servicios" element={<GestionServicios />} />
-          <Route path="/Inventario" element={<GestionInventario />} />
-          <Route path="/TSpa" element={<GestionTSpa />} />
-        </Routes>
-      </Router>
+      <><GestionProductos/></>
     </>
   );
 }

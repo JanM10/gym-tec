@@ -106,7 +106,7 @@ const GestionProductos = () => {
             id_sucursal: 1
         };
 
-        fetch(`http://localhost:49146/api/productos/${productoId}`, {
+        fetch(`http://localhost:49146/api/productos`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
